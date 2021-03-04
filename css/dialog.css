@@ -44,5 +44,6 @@
     margin: auto;
 	padding: 10px;
 	background-color: #035e00;
-    width: 100px;
+    width: fit-content;
+    display: none;
 }

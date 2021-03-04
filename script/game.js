@@ -1,91 +1,59 @@
-// define variables
-var c = document.getElementById("game");
-var ctx = c.getContext("2d");
-ctx.canvas.width  = 600;
-ctx.canvas.height = 400;
+var scale = 2; // zoom of game
 var frameRate = 10; //frame rate of game in ms
-var squareSize = 20; // size of character, walls etc.
-var speed = 2; // speed at which character moves
-let dx = 0; // Horizontal velocity of character - direction (x)
-let dy = 0; // Vertical velocity of character - direction (y)
-var deathBy = "nothing";
+var squareSize = 10; // size of character, walls etc.
+var speed = 1; // speed at which character moves
+var currentLevel = 1; // current game level
+var deathBy = "nothing"; // cause of death (for monitoring reasons)
+var walls = []; // array of wall locations as per level
+var character; // initialize character
+var goal; // goal for each level
 
-var images = {};
-var totalResources = 0;
-var numResourcesLoaded = 0;
-
-//load images
-function loadImage(name) {
-	images[name] = new Image();
-	images[name].onload = function() {resourceLoaded()}
-	images[name].src = "media/" + name + ".png";
+// executed when body loads successfully
+function createGame() {
+	gameArea.create();
+	character = new component(squareSize * scale, squareSize * scale, "red", 20 * scale, 100 * scale);
+	goal = new component(squareSize * scale, squareSize * scale, "#E5A001", 60 * scale, 100 * scale);
+	startNextLevel(1);
 }
 
-totalResources ++; loadImage("header");
-totalResources ++; loadImage("point");
-totalResources ++; loadImage("wall");
-totalResources ++; loadImage("black_dot");
-
-// initialise canvas when all resources are loaded
-function resourceLoaded() {
-	numResourcesLoaded += 1;
-	if(numResourcesLoaded === totalResources) {
-		ctx.drawImage(images["header"], 100, 80);
-	}
-}
-
-function newGame() {
-	resetScore();
-	redraw();
-	// start game
-	main();
-}
-
-// main function
-function main() {
-	//check if game is over
-	if (isGameOver()) {
-		gameInProgress = false;
-		gameOver();
-		return; // stop main function
-	}
-	
-	// run each game tick at (framerate) ms apart
-	setTimeout(function onTick() {
-		redraw();
-		//repeat function
-		main();
-	}, frameRate)
+// main function stored in here (gameArea.interval)
+var gameArea = {
+    canvas : document.createElement("canvas"),
+    create : function() {
+        this.canvas.width = 300 * scale;
+        this.canvas.height = 200 * scale;
+        this.context = this.canvas.getContext("2d"); 
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]); // where canvas appears in body
+		//listen for keydown events, pass key code through (e)
+        window.addEventListener('keydown', function (e) {
+            gameArea.keys = (gameArea.keys || []);
+            gameArea.keys[e.keyCode] = (e.type == "keydown");
+        })
+		//listen for keyup events, pass key code through (e)
+        window.addEventListener('keyup', function (e) {
+            gameArea.keys[e.keyCode] = (e.type == "keydown");            
+        })
+    }, 
+	// start interval that redraws canvas once every (framerate) ms
+	start : function() {this.interval = setInterval(redraw, frameRate);},
+	// clear function, for reseting gameArea canvas to blank
+    clear : function() {this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);},
+	// used to clear interval if bugs are present or game over etc
+	stop : function() {clearInterval(this.interval);}
 }
 
 
-// clear and redraw canvas background
+// runs every game tick (frameRate)
 function redraw() {
-	ctx.clearRect(0, 0, c.width, c.height);
-	// draw here
-	drawCharacter();
-}
-
-function drawCharacter() {
-	ctx.fillStyle = 'red';
-	ctx.fillRect(100, 100, squareSize, squareSize)
-}
-
-function isGameOver() {
-	//check if character touches enemy
-	//const hitEnemy = character.x < 0;
-	//if (hitEnemy) {deathBy = "enemy"};
-	//return hitEnemy; // return true value
-}
-
-function gameOver() {
-	if (score > highscore) {
-		updateHighscore();
-	} else {
-		// jQuery dialog box with how you died, and score + high score
-		$("#dialog").dialog('option', 'title', 'Game Over');
-		$("#dialog-message").html("<br>Your score: " + score + "<br><br>High score: " + highscore +
-		"<br><br>You died by crashing into " + deathBy);
-		$("#dialog").dialog("open"); 
+	// clear canvas to blank
+	gameArea.clear();
+	// draw array of walls
+	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
+	// draw goal
+	goal.update();
+	// run character and collision detection code
+	updateCharacter();
+	if (character.crashWith(goal)) {
+		completeLevel();
 	}
 }

@@ -12,17 +12,36 @@ $(function() {
 		hide : "blind",
 		dialogClass: "no-close",
 		buttons: [
-			// No button
-			{text: "No",
+			// Close button
+			{text: "Close",
 				click: function() {
 					$(this).dialog("close");
+					$('.ui-dialog-buttonpane button').button().hide();
 				}
 			},
-			// Yes button
-			{text: "Yes",
+			// New game button
+			{text: "New game",
 				click: function() {
-					newGame();
 					$(this).dialog("close");
+					$('.ui-dialog-buttonpane button').button().hide();
+					gameArea.stop();
+					startNextLevel(1);
+				}
+			},
+			// Load game button
+			{text: "Load game",
+				click: function() {
+					$(this).dialog("close");
+					$('.ui-dialog-buttonpane button').button().hide();
+					//loadGame();
+				}
+			},
+			// Next Level
+			{text: "Next level",
+				click: function() {
+					$(this).dialog("close");
+					$('.ui-dialog-buttonpane button').button().hide();
+					startNextLevel();
 				}
 			}
 		]
@@ -34,6 +53,8 @@ $('#new-btn').on('click', function(){
 	$("#dialog").dialog('option', 'title', 'Start new game?');
 	$("#dialog-message").html("Are you sure you want to start a new game?<br>" +
 	"Your current game will be saved and can be played by pressing the load game button.");
+	$('.ui-dialog-buttonpane button:contains("New game")').button().show();
+	$('.ui-dialog-buttonpane button:contains("Close")').button().show();
 	$("#dialog").dialog("open"); 
 });
 
@@ -42,5 +63,7 @@ $('#load-btn').on('click', function(){
 	$("#dialog").dialog('option', 'title', 'Load game?');
 	$("#dialog-message").html("Are you sure you want to load your saved game?<br>" +
 	"Your current progress will be lost if saved game is more progressed.");
+	$('.ui-dialog-buttonpane button:contains("Load game")').button().show();
+	$('.ui-dialog-buttonpane button:contains("Close")').button().show();
 	$("#dialog").dialog("open"); 
 });
