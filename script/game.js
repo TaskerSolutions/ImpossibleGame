@@ -12,7 +12,7 @@ function createGame() {
 	character = new component(squareSize * scale, squareSize * scale, "red", 20 * scale, 100 * scale);
 	goal = new component(squareSize * scale, squareSize * scale, "#E5A001", 60 * scale, 100 * scale);
 	timer.start();
-	startNextLevel(1);
+	startNextLevel(4);
 }
 
 // main function stored in here (gameArea.interval)

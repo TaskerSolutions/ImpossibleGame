@@ -4,13 +4,17 @@ var currentLevel = 1; // current game level
 function startNextLevel(level) {
 	// reset game area
 	gameArea.stop();
+
 	// increase level by one. Or set level manually.
 	if (level == null) {currentLevel += 1;}
 	else {currentLevel = level;};
+
 	// print current level in html
 	$('#level').html(currentLevel);
+
 	// retrieve best times
 	retrieveBestTimes();
+
 	// print current best time to html doc
 	if (bestTimes[currentLevel] == null) {
 		$('#best-time').html("none");
@@ -55,6 +59,16 @@ function characterGoalPosition(level) {
 		goal.x = 27 * position;
 		goal.y = 10 * position;
 	} else if (level == 3) {
+		character.x = 2 * position;
+		character.y = 10 * position;
+		goal.x = 27 * position;
+		goal.y = 10 * position;
+	} else if (level == 4) {
+		character.x = 3 * position;
+		character.y = 3 * position;
+		goal.x = 26 * position;
+		goal.y = 3 * position;
+	} else if (level == 5) {
 		character.x = 2 * position;
 		character.y = 10 * position;
 		goal.x = 27 * position;

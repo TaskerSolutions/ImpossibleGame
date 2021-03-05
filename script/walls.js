@@ -30,17 +30,12 @@ function createWalls(level) {
 		newWallColumn(15, 6, 18);
 		newWallColumn(23, 1, 13);
 	} else if (level == 2) {
-		newWallRow(1, 1, 28);
-		newWallRow(2, 1, 28);
-		newWallRow(3, 1, 28);
-		newWallRow(4, 1, 28);
-		newWallRow(5, 1, 28);
-		newWallRow(6, 1, 28);
-		newWallRow(14, 1, 28);
-		newWallRow(15, 1, 28);
-		newWallRow(16, 1, 28);
-		newWallRow(17, 1, 28);
-		newWallRow(18, 1, 28);
+		for (b = 1; b < 7; b++) {newWallRow(b, 1, 28);};
+		for (b = 14; b < 19; b++) {newWallRow(b, 1, 28);};
 	} else if (level == 3) {
+	} else if (level == 4) {
+		for (b = 1; b < 14; b++) {newWallRow(b, 6, 23);};
+	} else if (level == 5) {
+
 	}
 }
