@@ -12,7 +12,11 @@ function startNextLevel(level) {
 	// retrieve best times
 	retrieveBestTimes();
 	// print current best time to html doc
-	if (!(bestTimes[currentLevel] == null)) {$('#best-time').html(bestTimes[currentLevel]);}
+	if (bestTimes[currentLevel] == null) {
+		$('#best-time').html("none");
+	} else {
+		$('#best-time').html(bestTimes[currentLevel]);
+	}
 
 	// initializes components of each level
 	createLevel(currentLevel);
