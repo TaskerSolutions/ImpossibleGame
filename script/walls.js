@@ -1,83 +1,46 @@
-// create the walls for a level. only run once per level, printing of the walls is run every game tick
-function createWalls(level) {
-	let spacing = squareSize * scale;
-	let position = 10 * scale;
-	let width = gameArea.canvas.width;
-	let height = gameArea.canvas.height;
-	let currentX = 0;
-	let currentY = 10 * scale;
+var walls = []; // array of wall locations as per level
 
+// add new wall to array
+function newWall(x, y) {
+	walls.push(new component(spacing, spacing, "wall", x * position, y * position));
+}
+// add row of walls (X location, Y Start, Length)
+function newWallColumn(x, yStart, length) {
+	for (i = 0 + yStart; i < length + 1; i += 1) {newWall(x, i);}
+}
+// add row of walls (Y location, X Start, Length)
+function newWallRow(y, xStart, length) {
+	for (i = 0 + xStart; i < length + 1; i += 1) {newWall(i, y);}
+}
+
+// create the walls for a level. only run once per level, printing of the walls is run every game tick
+// between 1 and 28 on X axis.  between 1 and 18 on Y axis
+function createWalls(level) {
 	// clear current array
 	walls = [];
-	// top walls
-	while (currentX < width) {
-		walls.push(new component(spacing, spacing, "wall", currentX, 0));
-		currentX += 10 * scale;
-	}
-	currentX = 0;
-	// bottom walls
-	while (currentX < width) {
-		walls.push(new component(spacing, spacing, "wall", currentX, height - 1 * position));
-		currentX += 10 * scale;
-	}
-	// left walls
-	while (currentY < height) {
-		walls.push(new component(spacing, spacing, "wall", 0, currentY));
-		currentY += 10 * scale;
-	}
-	currentY = 10 * scale;
-	// right walls
-	while (currentY < height) {
-		walls.push(new component(spacing, spacing, "wall", width - 1 * position, currentY));
-		currentY += 10 * scale;
-	}
+	// create outer perimeter walls
+	newWallRow(0, 0, 29);
+	newWallRow(19, 0, 29);
+	newWallColumn(0, 1, 18);
+	newWallColumn(29, 1, 18);
 
-	// between 1 and 28 for components on X axis
-	// between 1 and 18 for components on Y axis
+	// (X/Y location, X/Y Start, Length)
 	if (level == 1) {
-		//top left
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 1 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 2 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 3 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 4 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 5 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 6 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 7 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 8 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 9 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 10 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 11 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 12 * position));
-		walls.push(new component(spacing, spacing, "wall", 7 * position, 13 * position));
-		//bottom left
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 6 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 7 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 8 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 9 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 10 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 11 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 12 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 13 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 14 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 15 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 16 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 17 * position));
-		walls.push(new component(spacing, spacing, "wall", 14 * position, 18 * position));
-		//top right
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 1 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 2 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 3 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 4 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 5 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 6 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 7 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 8 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 9 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 10 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 11 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 12 * position));
-		walls.push(new component(spacing, spacing, "wall", 22 * position, 13 * position));
+		newWallColumn(7, 1, 13);
+		newWallColumn(15, 6, 18);
+		newWallColumn(23, 1, 13);
 	} else if (level == 2) {
-
+		newWallRow(1, 1, 28);
+		newWallRow(2, 1, 28);
+		newWallRow(3, 1, 28);
+		newWallRow(4, 1, 28);
+		newWallRow(5, 1, 28);
+		newWallRow(6, 1, 28);
+		newWallRow(14, 1, 28);
+		newWallRow(15, 1, 28);
+		newWallRow(16, 1, 28);
+		newWallRow(17, 1, 28);
+		newWallRow(18, 1, 28);
+	} else if (level == 3) {
 	}
 }

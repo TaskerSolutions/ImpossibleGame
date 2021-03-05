@@ -30,13 +30,14 @@
 <body onload="createGame()">
 	<main class="ready reveal-in">
 		<div id="dialog"><p id="dialog-message"></p></div>
-		<div class="score-div">Level: <span id="level">0</span></div>
 		<div class="container">
-			<div class="score-div">Score: <span id="score">0</span></div>
-			<div class="score-div">High Score: <span id="highscore">0</span></div>
+			<div class="score-div"><span>Level: </span><span id="level">0</span></div>
+			<div class="score-div"><span>Time: </span><span id="time">0</span></div>
+			<div class="score-div"><span>Best Time: </span><span id="best-time">0</span></div>
 		</div>
 		<div class="container">I am currently working on this game. More levels will be uploaded shortly.</div>
 		<div class="container">
+			<button id="restart-btn">Restart Level</button>
 			<button id="new-btn">New Game</button>
 			<button id="load-btn">Load Game</button>
 		</div>
@@ -48,16 +49,18 @@
 	</footer>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="script/images.js"></script>
 	<script src="script/score.js"></script>
+	<script src="script/images.js"></script>
+	<script src="script/timer.js"></script>
+	
 	<script src="script/level.js"></script>
 	<script src="script/walls.js"></script>
 	<script src="script/script.js"></script>
 	<script src="script/components.js"></script>
+	<script src="script/character.js"></script>
+	<script src="script/enemies.js"></script>	
 	<script src="script/game.js"></script>
-	
-	
-	
+
 	<!-- scripts for dialog box-->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	

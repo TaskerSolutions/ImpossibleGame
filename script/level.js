@@ -1,57 +1,59 @@
+var currentLevel = 1; // current game level
+
+// Create level components, then start interval timer
 function startNextLevel(level) {
-	// increase level by one. each time function is run.
-	currentLevel += 1;
-	// or set level manually 
-	if (level != null) {currentLevel = level;};
+	// reset game area
+	gameArea.stop();
+	// increase level by one. Or set level manually.
+	if (level == null) {currentLevel += 1;}
+	else {currentLevel = level;};
+	// print current level in html
 	$('#level').html(currentLevel);
+	// retrieve best times
+	retrieveBestTimes();
+	// print current best time to html doc
+	$('#best-time').html(JSON.stringify(bestTimes[currentLevel]));
+
+	// initializes components of each level
+	createLevel(currentLevel);
 	// start interval timer
 	gameArea.start();
-	// initializes components of each level
-	createLevel(level);
+	// restart level timer
+	timer.reset();
 }
 
 // complete level function
 function completeLevel() {
+	// stop interval timer (redraw)
 	gameArea.stop();
-	// jQuery dialog box with score + level completion
-	$("#dialog").dialog('option', 'title', 'Congratulations!');
-	$("#dialog-message").html("Level Complete.<br><br>Your score: " + score +
-	"<br><br>High score: " + highscore);
-	$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
-	$("#dialog").dialog("open"); 
+	// update times & open dialog
+	updateBestTime(currentLevel);
 }
 
-
-
-// run game over function to update high score & provide dialog box to try again etc.
-function gameOver() {
-	if (score > highscore) {
-		updateHighscore();
-	} else {
-		// jQuery dialog box with how you died, and score + high score
-		$("#dialog").dialog('option', 'title', 'Game Over');
-		$("#dialog-message").html("<br>Your score: " + score + "<br><br>High score: " + highscore +
-		"<br><br>You died by crashing into " + deathBy);
-		$("#dialog").dialog("open"); 
-	}
-}
 
 // each levels components are created here (only called once per level)
-// between 1 and 28 for components on X axis
-// between 1 and 18 for components on Y axis
-function createLevel() {
-	let position = 10 * scale;
-	if (currentLevel == 1) {
+function createLevel(level) {
+	characterGoalPosition(level);
+	createWalls(level);
+	createEnemies(level);
+}
+
+//define character and goal positions
+function characterGoalPosition(level) {
+	if (level == 1) {
 		character.x = 3 * position;
 		character.y = 4 * position;
 		goal.x = 26 * position;
 		goal.y = 4 * position;
-		createWalls(1);
-	} else if (currentLevel == 2) {
-		character.x = 10 * position;
+	} else 	if (level == 2) {
+		character.x = 2 * position;
 		character.y = 10 * position;
-		goal.x = 20 * position;
+		goal.x = 27 * position;
 		goal.y = 10 * position;
-		createWalls(2);
+	} else if (level == 3) {
+		character.x = 2 * position;
+		character.y = 10 * position;
+		goal.x = 27 * position;
+		goal.y = 10 * position;
 	}
 }

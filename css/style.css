@@ -15,7 +15,8 @@ main {
 
 .container {
 	display: flex;
-	width: 80%;
+	flex-wrap: wrap;
+	max-width: 600px;
 	margin: auto;
 	justify-content: space-around;
 	position: relative;
@@ -43,7 +44,16 @@ canvas {
 	margin-top: 80px;
 }
 
-.score-div {padding-top: 20px;}
+.score-div {
+	padding-top: 20px;
+	margin-left: 20%;
+}
+
+span {
+	display: inline-block;
+	min-width: 200px;
+	text-align: left;
+}
 
 footer {
 	background-color: #333333;

@@ -2,17 +2,16 @@ var scale = 2; // zoom of game
 var frameRate = 10; //frame rate of game in ms
 var squareSize = 10; // size of character, walls etc.
 var speed = 1; // speed at which character moves
-var currentLevel = 1; // current game level
-var deathBy = "nothing"; // cause of death (for monitoring reasons)
-var walls = []; // array of wall locations as per level
-var character; // initialize character
 var goal; // goal for each level
+let spacing = squareSize * scale; // spacing for each component. default is 20px
+let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 80px)
 
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
 	character = new component(squareSize * scale, squareSize * scale, "red", 20 * scale, 100 * scale);
 	goal = new component(squareSize * scale, squareSize * scale, "#E5A001", 60 * scale, 100 * scale);
+	timer.start();
 	startNextLevel(1);
 }
 
@@ -38,22 +37,25 @@ var gameArea = {
 	start : function() {this.interval = setInterval(redraw, frameRate);},
 	// clear function, for reseting gameArea canvas to blank
     clear : function() {this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);},
-	// used to clear interval if bugs are present or game over etc
+	// used to clear interval if bugs are present or game over, level complete etc.
 	stop : function() {clearInterval(this.interval);}
 }
 
 
 // runs every game tick (frameRate)
 function redraw() {
+	// read timer
+	time = Math.round(timer.getTime() / 10) / 100
+	// print time to html
+	$('#time').html(time);
 	// clear canvas to blank
 	gameArea.clear();
 	// draw array of walls
 	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
 	// draw goal
 	goal.update();
-	// run character and collision detection code
+	//draw enemies
+	updateEnemies();
+	// run character movement and collision detection code
 	updateCharacter();
-	if (character.crashWith(goal)) {
-		completeLevel();
-	}
 }
