@@ -2,10 +2,7 @@ var time = 0;
 
 // retrieve best times from local storage
 var bestTimes = localStorage.getItem('bestTimesImpossibleGame');
-// Parse the string back into an array so it is usable in js
-bestTimes = JSON.parse(bestTimes);
-// if best times is empty, define it as empty array
-if (bestTimes == null) {bestTimes = [];}
+
 
 
 
@@ -57,5 +54,7 @@ function retrieveBestTimes() {
 	bestTimes = localStorage.getItem('bestTimesImpossibleGame');
 	// Parse the string back into an array so it is usable in js
 	bestTimes = JSON.parse(bestTimes);
+	// if best times is empty, define it as empty array
+	if (bestTimes == null) {bestTimes = [];}
 	console.log("best times array = " + bestTimes);
 }
