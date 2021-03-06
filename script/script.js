@@ -13,14 +13,10 @@ $(function() {
 		dialogClass: "no-close",
 		buttons: [
 			// Close button
-			{text: "Close",	click: function() {closeDialog();}},
+			{text: "Cancel",	click: function() {closeDialog();}},
 			// New game button
 			{text: "New game", click: function() {closeDialog();
 				startNextLevel(1);
-			}},
-			// Load game button
-			{text: "Load game",	click: function() {closeDialog();
-				//loadGame();
 			}},
 			// Next Level
 			{text: "Next level", click: function() {closeDialog();
@@ -30,6 +26,15 @@ $(function() {
 			{text: "Try again",	click: function() {closeDialog();
 				startNextLevel(currentLevel);
 			}},
+			// Load level 1 button
+			{text: "1",	click: function() {closeDialog();
+				console.log('loadGame(level);')
+			}},
+			// Load level 2 button
+			{text: "2",	click: function() {closeDialog();
+				console.log('loadGame(level);')
+			}},
+
 		]
 	});
 });
@@ -49,18 +54,20 @@ $('#restart-btn').on('click', function(){
 $('#new-btn').on('click', function(){
 	$("#dialog").dialog('option', 'title', 'Start new game?');
 	$("#dialog-message").html("Are you sure you want to start a new game?<br>" +
-	"Your current level progress can be loaded at any time.");
+	"Any previously unlocked level can be loaded at any time.");
 	$('.ui-dialog-buttonpane button:contains("New game")').button().show();
-	$('.ui-dialog-buttonpane button:contains("Close")').button().show();
+	$('.ui-dialog-buttonpane button:contains("Cancel")').button().show();
 	$("#dialog").dialog("open"); 
 });
 
 // loading game - jQuery dialog box asking for confirmation
 $('#load-btn').on('click', function(){
 	$("#dialog").dialog('option', 'title', 'Load game?');
-	$("#dialog-message").html("Are you sure you want to load your saved game?<br>" +
-	"Your current progress will be lost if saved game is more progressed.");
-	$('.ui-dialog-buttonpane button:contains("Load game")').button().show();
-	$('.ui-dialog-buttonpane button:contains("Close")').button().show();
+	$("#dialog-message").html("which level do you want to play?<br>");
+	$('.ui-dialog-buttonpane button:contains("Cancel")').button().show();
+
+	$('.ui-dialog-buttonpane button:contains("1")').button().show();
+	$('.ui-dialog-buttonpane button:contains("2")').button().show();
+
 	$("#dialog").dialog("open"); 
 });

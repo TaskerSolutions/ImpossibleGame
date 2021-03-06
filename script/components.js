@@ -9,7 +9,21 @@ function component(width, height, type, x, y, speedX, speedY) {
     this.y = y;    
     this.update = function() {
 		if (type == "wall") {
-			gameArea.context.drawImage(images["wall"], this.x, this.y, 10 * scale, 10 * scale)
+			gameArea.context.drawImage(images["wall"], this.x, this.y, spacing, spacing)
+		} else if (type == "bomb") {
+			gameArea.context.drawImage(images["bomb"], this.x, this.y, spacing, spacing)
+		} else if (type == "explosion1") {
+			gameArea.context.drawImage(images["explosion1"], this.x - spacing * 2, this.y - spacing * 2, spacing * 6, spacing * 6)
+		} else if (type == "explosion2") {
+			gameArea.context.drawImage(images["explosion2"], this.x - spacing * 2, this.y - spacing * 2, spacing * 6, spacing * 6)
+		} else if (type == "explosion3") {
+			gameArea.context.drawImage(images["explosion3"], this.x - spacing * 2, this.y - spacing * 2, spacing * 6, spacing * 6)
+		} else if (type == "explosion4") {
+			gameArea.context.drawImage(images["explosion4"], this.x - spacing * 2, this.y - spacing * 2, spacing * 6, spacing * 6)
+		} else if (type == "explosion5") {
+			gameArea.context.drawImage(images["explosion5"], this.x - spacing * 2, this.y - spacing * 2, spacing * 6, spacing * 6)
+		} else if (type == "explosion6") {
+			gameArea.context.drawImage(images["explosion6"], this.x - spacing * 2, this.y - spacing * 2, spacing * 6, spacing * 6)
 		} else {
 			ctx = gameArea.context;
         	ctx.fillStyle = type;

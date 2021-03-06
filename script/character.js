@@ -53,20 +53,21 @@ function updateCharacter() {
 		}	
 	}
 
-	// check for collision with enemy types & reset character to start if collided
-	for (i = 0; i < bounceEnemy.length; i += 1) {
-		if (character.crashWith(bounceEnemy[i])) {
-			i = bounceEnemy.length;
-			characterGoalPosition(currentLevel);
-		}
-	}	
-
-	// check if level complete
-	if (character.crashWith(goal)) {
-		completeLevel();
-	}
+	// check for collision with types & execute function depening on what is hit
+	if (checkCollision(bombEnemy)) {explodeBomb(i);};
+	if (checkCollision(bounceEnemy)) {hitEnemy(i);};
+	if (character.crashWith(goal)) {completeLevel();}
 
 	// update char position and print to canvas
     character.newPos();    
     character.update();
+}
+
+// check collision with enemy type
+function checkCollision(type) {
+	for (i = 0; i < type.length; i += 1) {
+		if (character.crashWith(type[i])) {
+			return type[i];
+		}
+	}	
 }

@@ -73,5 +73,10 @@ function characterGoalPosition(level) {
 		character.y = 10 * position;
 		goal.x = 27 * position;
 		goal.y = 10 * position;
+	} else {
+		character.x = 2 * position;
+		character.y = 10 * position;
+		goal.x = 4 * position;
+		goal.y = 10 * position;
 	}
 }

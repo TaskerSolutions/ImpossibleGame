@@ -11,8 +11,17 @@ function loadImage(name) {
 
 totalResources ++; loadImage("header");
 totalResources ++; loadImage("point");
-totalResources ++; loadImage("wall");
 totalResources ++; loadImage("black_dot");
+
+totalResources ++; loadImage("wall");
+totalResources ++; loadImage("bomb");
+totalResources ++; loadImage("explosion1");
+totalResources ++; loadImage("explosion2");
+totalResources ++; loadImage("explosion3");
+totalResources ++; loadImage("explosion4");
+totalResources ++; loadImage("explosion5");
+totalResources ++; loadImage("explosion6");
+
 
 // initialise canvas when all resources are loaded
 function resourceLoaded() {

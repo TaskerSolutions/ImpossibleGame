@@ -1,7 +1,7 @@
 var scale = 2; // zoom of game
-var frameRate = 10; //frame rate of game in ms
+var frameRate = 20; //frame rate of game in ms
 var squareSize = 10; // size of character, walls etc.
-var speed = 1; // speed at which character moves
+var speed = 2; // speed at which character moves
 var goal; // goal for each level
 let spacing = squareSize * scale; // spacing for each component. default is 20px
 let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 80px)
@@ -9,10 +9,10 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
-	character = new component(squareSize * scale, squareSize * scale, "red", 20 * scale, 100 * scale);
+	character = new component(squareSize * scale, squareSize * scale, "green", 20 * scale, 100 * scale);
 	goal = new component(squareSize * scale, squareSize * scale, "#E5A001", 60 * scale, 100 * scale);
 	timer.start();
-	startNextLevel(4);
+	startNextLevel(1);
 }
 
 // main function stored in here (gameArea.interval)
