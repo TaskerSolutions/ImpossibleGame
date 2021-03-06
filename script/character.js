@@ -1,5 +1,16 @@
 var character; // initialize character
-var  characterDead = false;
+var characterDead = false;
+var goal;
+
+// remake character
+function newCharacter(x, y, color) {
+	character = new component(spacing, spacing, color, x * position, y * position);
+}
+
+// remake goal
+function newGoal(x, y, width, height) {
+	goal = new component(width * position, height * position, "green", x * position, y * position);
+}
 
 // run every game tick. Used to move character & check for collisions
 function updateCharacter() {

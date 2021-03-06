@@ -1,10 +1,6 @@
 var time = 0;
-
 // retrieve best times from local storage
 var bestTimes = localStorage.getItem('bestTimesImpossibleGame');
-
-
-
 
 function updateBestTime(level) {
 	retrieveBestTimes();

@@ -8,13 +8,15 @@ function startNextLevel(level) {
 	// increase level by one. Or set level manually.
 	if (level == null) {currentLevel += 1;}
 	else {currentLevel = level;};
-
 	// print current level in html
 	$('#level').html(currentLevel);
 
 	// retrieve best times
 	retrieveBestTimes();
-
+	// make best times array full so that load level is available for all @@@@@@@@@ TEMPORARY
+	for (i = 0; i < 31; i ++) {
+		bestTimes[i] = 0;
+	}
 	// print current best time to html doc
 	if (bestTimes[currentLevel] == null) {
 		$('#best-time').html("none");
@@ -46,117 +48,45 @@ function completeLevel() {
 	updateBestTime(currentLevel);
 }
 
-
 // each levels components are created here (only called once per level)
 function createLevel(level) {
-	characterGoalPosition(level);
-	createWalls(level);
-	createEnemies(level);
-}
-
-// remake character
-function newCharacter(x, y, color) {
-	character = new component(spacing, spacing, color, x * position, y * position);
-}
-
-// remake goal
-function newGoal(x, y, width, height) {
-	goal = new component(width * position, height * position, "green", x * position, y * position);
-}
-
-//define character and goal positions
-function characterGoalPosition(level) {
-	if (level == 1) {
-		newCharacter(3, 4, "red");
-		newGoal(24, 1, 5, 4);
-	} else 	if (level == 2) {
-		newCharacter(2, 10, "red");
-		newGoal(26, 7, 3, 7);
-	} else if (level == 3) {
-		newCharacter(2, 10, "red");
-		newGoal(27, 1, 2, 18);
-	} else if (level == 4) {
-		newCharacter(3, 4, "red");
-		newGoal(24, 1, 5, 4);
-	} else if (level == 5) {
-		newCharacter(2, 10, "red");
-		newGoal(26, 7, 3, 7);
-	} else if (level == 6) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 7) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 8) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 9) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 10) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 11) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 12) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 13) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 14) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 15) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 16) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 17) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 18) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 19) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 20) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 21) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 22) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 23) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 24) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 25) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 26) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 27) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 28) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 29) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else if (level == 30) {
-		newCharacter(2, 10, "red");
-		newGoal(4, 10, 1, 1);
-	} else {
+	// clear current arrays of walls and enemies
+	walls = [];
+	bombEnemy = [];
+	bounceEnemy = [];
+	// create new components
+	if (level == 1) {level1();}
+	else if (level == 2) {level2();}
+	else if (level == 3) {level3();}
+	else if (level == 4) {level4();}
+	else if (level == 5) {level5();}
+	else if (level == 6) {level6();}
+	else if (level == 7) {level7();}
+	else if (level == 8) {level8();}
+	else if (level == 9) {level9();}
+	else if (level == 10) {level10();}
+	else if (level == 11) {level11();}
+	else if (level == 12) {level12();}
+	else if (level == 13) {level13();}
+	else if (level == 14) {level14();}
+	else if (level == 15) {level15();}
+	else if (level == 16) {level16();}
+	else if (level == 17) {level17();}
+	else if (level == 18) {level18();}
+	else if (level == 19) {level19();}
+	else if (level == 20) {level20();}
+	else if (level == 21) {level21();}
+	else if (level == 22) {level22();}
+	else if (level == 23) {level23();}
+	else if (level == 24) {level24();}
+	else if (level == 25) {level25();}
+	else if (level == 26) {level26();}
+	else if (level == 27) {level27();}
+	else if (level == 28) {level28();}
+	else if (level == 29) {level29();}
+	else if (level == 30) {level30();}
+	else {
+		//backup position
 		newCharacter(2, 10, "red");
 		newGoal(4, 10, 1, 1);
 	}
