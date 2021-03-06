@@ -9,10 +9,8 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
-	character = new component(squareSize * scale, squareSize * scale, "green", 20 * scale, 100 * scale);
-	goal = new component(squareSize * scale, squareSize * scale, "#E5A001", 60 * scale, 100 * scale);
 	timer.start();
-	startNextLevel(1);
+	startNextLevel(4);
 }
 
 // main function stored in here (gameArea.interval)
@@ -62,8 +60,10 @@ function redraw() {
 	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
 	// draw goal
 	goal.update();
-	//draw enemies
-	updateEnemies();
 	// run character movement and collision detection code
 	updateCharacter();
+	//draw enemies
+	updateEnemies();
+	
+	
 }

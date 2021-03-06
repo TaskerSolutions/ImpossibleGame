@@ -42,6 +42,58 @@ function createWalls(level) {
 		outerWalls();
 		for (b = 1; b < 14; b++) {newWallRow(b, 6, 23);};
 	} else if (level == 5) {
-		
+		outerWalls();
+	} else if (level == 6) {
+		outerWalls();
+	} else if (level == 7) {
+		outerWalls();
+	} else if (level == 8) {
+		outerWalls();
+	} else if (level == 9) {
+		outerWalls();
+	} else if (level == 10) {
+		outerWalls();
+	} else if (level == 11) {
+		outerWalls();
+	} else if (level == 12) {
+		outerWalls();
+	} else if (level == 13) {
+		outerWalls();
+	} else if (level == 14) {
+		outerWalls();
+	} else if (level == 15) {
+		outerWalls();
+	} else if (level == 16) {
+		outerWalls();
+	} else if (level == 17) {
+		outerWalls();
+	} else if (level == 18) {
+		outerWalls();
+	} else if (level == 19) {
+		outerWalls();
+	} else if (level == 20) {
+		outerWalls();
+	} else if (level == 21) {
+		outerWalls();
+	} else if (level == 22) {
+		outerWalls();
+	} else if (level == 23) {
+		outerWalls();
+	} else if (level == 24) {
+		outerWalls();
+	} else if (level == 25) {
+		outerWalls();
+	} else if (level == 26) {
+		outerWalls();
+	} else if (level == 27) {
+		outerWalls();
+	} else if (level == 28) {
+		outerWalls();
+	} else if (level == 29) {
+		outerWalls();
+	} else if (level == 30) {
+		outerWalls();
+	} else {
+		outerWalls();
 	}
 }

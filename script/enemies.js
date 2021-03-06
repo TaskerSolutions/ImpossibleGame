@@ -1,14 +1,16 @@
 var bombEnemy = []; // array of bomb enemy locations as per level
+var bombSize = 18;
 var bounceEnemy = []; // array of bouncing enemy locations as per level
+var bounceSize = 18;
 
 // stationary enemy  (x location, Y location)
 function newBombEnemy(x, y) {
-	bombEnemy.push(new component(spacing, spacing, "bomb", x * position, y * position));
+	bombEnemy.push(new component(bombSize, bombSize, "bomb", x * position + 1, y * position + 1));
 }
 
 // enemy that bounces off walls (x location, Y location, X speed, Y speed)
 function newBounceEnemy(x, y, speedX, speedY) {
-	bounceEnemy.push(new component(spacing, spacing, "blue", x * position, y * position, speedX * speed, speedY * speed));
+	bounceEnemy.push(new component(bounceSize, bounceSize, "blue", x * position + 1, y * position + 1, speedX * speed, speedY * speed));
 }
 
 // run when character hits an enemy. Position is the position in enemy array
@@ -24,25 +26,36 @@ function explodeBomb(position) {
 		(function (i) {
 		  	setTimeout(function () {
 				var explosion = "explosion".concat(i.toString());
-				bombEnemy[position] = new component(spacing, spacing, explosion, x, y);
+				bombEnemy[position] = new component(bombSize, bombSize, explosion, x, y);
 		    }, 50*i);
 		})(i);
 		i ++;;
 	};
 	setTimeout(function() {
-		bombEnemy[position] = new component(spacing, spacing, "bomb", x, y);
-		characterGoalPosition(currentLevel);
+		bombEnemy[position] = new component(bombSize, bombSize, "bomb", x, y);
+		startNextLevel(currentLevel);
 	}, 800)
 }
 
 // run when character hits an enemy. Position is the position in enemy array
 function hitEnemy(position) {
-	//move character off screen to give illusion of death
-	character.x = -100;
-	character.y = -100;
+	var x = character.x;
+	var y = character.y;
+	characterDead = true;
+	// death animation
+	var i = 1;
+	while (i < 20) {
+		(function (i) {
+		  	setTimeout(function () {
+				character = new component(spacing - i, spacing - i, "darkred", x + i/2, y + i/2);
+		    }, 20*i);
+		})(i);
+		i += 1;;
+	};
 	setTimeout(function() {
-		characterGoalPosition(currentLevel);
-	}, 200)
+		startNextLevel(currentLevel);
+		characterDead = false;
+	}, 420)
 }
 
 // create the enemies for a level. only run once per level, printing of the walls is run every game tick
@@ -96,17 +109,88 @@ function createEnemies(level) {
 		newBounceEnemy(20, 13, -1, 0);
 		newBounceEnemy(20, 17, -1, 0);
 	} else if (level == 4) {
-		newBombEnemy(2, 8);
-		newBombEnemy(4, 8);
-
+		newBombEnemy(3, 9);
+		newBombEnemy(3, 12);
 		newBombEnemy(3, 16);
-		newBombEnemy(11, 16);
-		newBombEnemy(18, 16);
-		newBombEnemy(26, 8);
-		newBombEnemy(26, 16);
+		newBounceEnemy(3, 8, 1, 0);
+		newBounceEnemy(3, 10, -1, 0);
+		newBounceEnemy(3, 13, 1, 0);
 
-		newBounceEnemy(3, 7, 1, 0);
-		newBounceEnemy(3, 9, 1, 0);
+		newBounceEnemy(3, 14, -1, 0);
+		newBounceEnemy(3, 15, 1, 0);
+		newBounceEnemy(3, 17, -1, 0);
+		newBounceEnemy(3, 18, 1, 0);
+		
+		newBombEnemy(11, 16);
+
+		newBounceEnemy(13, 17, 0, 1);
+		newBounceEnemy(16, 17, 0, -1);
+
+		newBombEnemy(18, 16);
+		
+		newBounceEnemy(26, 14, -1, 0);
+		newBounceEnemy(26, 15, 1, 0);
+		newBounceEnemy(26, 17, -1, 0);
+		newBounceEnemy(26, 18, 1, 0);
+
+		newBombEnemy(26, 9);
+		newBombEnemy(26, 12);
+		newBombEnemy(26, 16);
+		newBounceEnemy(26, 8, 1, 0);
+		newBounceEnemy(26, 10, -1, 0);
+		newBounceEnemy(26, 13, 1, 0);
+	} else if (level == 5) {
+		
+	} else if (level == 6) {
+		
+	} else if (level == 7) {
+		
+	} else if (level == 8) {
+		
+	} else if (level == 9) {
+		
+	} else if (level == 10) {
+		
+	} else if (level == 11) {
+		
+	} else if (level == 12) {
+		
+	} else if (level == 13) {
+		
+	} else if (level == 14) {
+		
+	} else if (level == 15) {
+		
+	} else if (level == 16) {
+		
+	} else if (level == 17) {
+		
+	} else if (level == 18) {
+		
+	} else if (level == 19) {
+		
+	} else if (level == 20) {
+		
+	} else if (level == 21) {
+		
+	} else if (level == 22) {
+		
+	} else if (level == 23) {
+		
+	} else if (level == 24) {
+		
+	} else if (level == 25) {
+		
+	} else if (level == 26) {
+		
+	} else if (level == 27) {
+		
+	} else if (level == 28) {
+		
+	} else if (level == 29) {
+		
+	} else if (level == 30) {
+		
 	}
 }
 

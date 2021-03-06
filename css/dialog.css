@@ -20,6 +20,7 @@
 /* center title text */
 .ui-dialog .ui-dialog-title {
     float: none;
+    text-align: center;
 }
 
 /* message style */
@@ -37,6 +38,8 @@
     float: none;
 	margin: auto;
 	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 /* button styles */
@@ -47,4 +50,6 @@
 	background-color: #035e00;
     width: fit-content;
     display: none;
+    min-width: 50px;
+    margin: 5px;
 }

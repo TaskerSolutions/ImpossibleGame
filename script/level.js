@@ -30,6 +30,14 @@ function startNextLevel(level) {
 	timer.reset();
 }
 
+// load defined level
+function loadLevel(level) {
+	// check for previous level having been completed
+	if (bestTimes[level - 1] != null) {
+		startNextLevel(level);
+	}
+}
+
 // complete level function
 function completeLevel() {
 	// stop interval timer (redraw)
@@ -46,37 +54,110 @@ function createLevel(level) {
 	createEnemies(level);
 }
 
+// remake character
+function newCharacter(x, y, color) {
+	character = new component(spacing, spacing, color, x * position, y * position);
+}
+
+// remake goal
+function newGoal(x, y, width, height) {
+	goal = new component(width * position, height * position, "green", x * position, y * position);
+}
+
 //define character and goal positions
 function characterGoalPosition(level) {
 	if (level == 1) {
-		character.x = 3 * position;
-		character.y = 4 * position;
-		goal.x = 26 * position;
-		goal.y = 4 * position;
+		newCharacter(3, 4, "red");
+		newGoal(24, 1, 5, 4);
 	} else 	if (level == 2) {
-		character.x = 2 * position;
-		character.y = 10 * position;
-		goal.x = 27 * position;
-		goal.y = 10 * position;
+		newCharacter(2, 10, "red");
+		newGoal(26, 7, 3, 7);
 	} else if (level == 3) {
-		character.x = 2 * position;
-		character.y = 10 * position;
-		goal.x = 27 * position;
-		goal.y = 10 * position;
+		newCharacter(2, 10, "red");
+		newGoal(27, 1, 2, 18);
 	} else if (level == 4) {
-		character.x = 3 * position;
-		character.y = 3 * position;
-		goal.x = 26 * position;
-		goal.y = 3 * position;
+		newCharacter(3, 4, "red");
+		newGoal(24, 1, 5, 4);
 	} else if (level == 5) {
-		character.x = 2 * position;
-		character.y = 10 * position;
-		goal.x = 27 * position;
-		goal.y = 10 * position;
+		newCharacter(2, 10, "red");
+		newGoal(26, 7, 3, 7);
+	} else if (level == 6) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 7) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 8) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 9) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 10) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 11) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 12) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 13) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 14) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 15) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 16) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 17) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 18) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 19) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 20) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 21) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 22) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 23) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 24) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 25) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 26) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 27) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 28) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 29) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
+	} else if (level == 30) {
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
 	} else {
-		character.x = 2 * position;
-		character.y = 10 * position;
-		goal.x = 4 * position;
-		goal.y = 10 * position;
+		newCharacter(2, 10, "red");
+		newGoal(4, 10, 1, 1);
 	}
 }

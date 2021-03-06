@@ -1,4 +1,5 @@
 var character; // initialize character
+var  characterDead = false;
 
 // run every game tick. Used to move character & check for collisions
 function updateCharacter() {
@@ -54,12 +55,12 @@ function updateCharacter() {
 	}
 
 	// check for collision with types & execute function depening on what is hit
-	if (checkCollision(bombEnemy)) {explodeBomb(i);};
-	if (checkCollision(bounceEnemy)) {hitEnemy(i);};
+	if (checkCollision(bombEnemy) && !characterDead) {explodeBomb(i);};
+	if (checkCollision(bounceEnemy) && !characterDead) {hitEnemy(i);};
 	if (character.crashWith(goal)) {completeLevel();}
 
 	// update char position and print to canvas
-    character.newPos();    
+	if (!characterDead) {character.newPos();};
     character.update();
 }
 

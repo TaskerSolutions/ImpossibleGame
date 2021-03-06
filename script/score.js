@@ -31,22 +31,18 @@ function updateBestTime(level) {
 	// print new best time to html doc
 	$('#best-time').html(JSON.stringify(bestTimes[level]));
 
+	// jQuery dialog box with new high score message
+	$("#dialog").dialog('option', 'title', 'Congratulations!');
+	$("#dialog-message").show();
 	if (time < bestTimes[level] || bestTimes[level] == null) {
-		// jQuery dialog box with new high score message
-		$("#dialog").dialog('option', 'title', 'Congratulations!');
 		$("#dialog-message").html("New best time: " + time + " seconds<br><br>Previous best: " + oldBestTime);
-		$('.ui-dialog-buttonpane button:contains("Try again")').button().show();
-		$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
-		$("#dialog").dialog("open");  
 	} else {
-		// jQuery dialog box with score + level completion
-		$("#dialog").dialog('option', 'title', 'Congratulations!');
 		$("#dialog-message").html("Level Complete.<br><br>Your time: " + time +
 		" seconds<br><br>Best Time: " + bestTimes[currentLevel] + " seconds");
-		$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
-		$('.ui-dialog-buttonpane button:contains("Try again")').button().show();
-		$("#dialog").dialog("open"); 
-	}
+	};
+	$('.ui-dialog-buttonpane button:contains("Try again")').button().show();
+	$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
+	$("#dialog").dialog("open");  
 }
 
 function retrieveBestTimes() {
@@ -56,5 +52,4 @@ function retrieveBestTimes() {
 	bestTimes = JSON.parse(bestTimes);
 	// if best times is empty, define it as empty array
 	if (bestTimes == null) {bestTimes = [];}
-	console.log("best times array = " + bestTimes);
 }
