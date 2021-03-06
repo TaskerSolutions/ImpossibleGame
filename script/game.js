@@ -27,10 +27,18 @@ var gameArea = {
         window.addEventListener('keydown', function (e) {
             gameArea.keys = (gameArea.keys || []);
             gameArea.keys[e.keyCode] = (e.type == "keydown");
+			if((e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40)
+				&& e.target.nodeName=='BODY') {
+				event.preventDefault(); //prevent default if it is body
+			}
         })
 		//listen for keyup events, pass key code through (e)
         window.addEventListener('keyup', function (e) {
-            gameArea.keys[e.keyCode] = (e.type == "keydown");            
+            gameArea.keys[e.keyCode] = (e.type == "keydown");  
+			if((e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40)
+				&& e.target.nodeName=='BODY') {
+				event.preventDefault(); //prevent default if it is body
+			}          
         })
     }, 
 	// start interval that redraws canvas once every (framerate) ms
