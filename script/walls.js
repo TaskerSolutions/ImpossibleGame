@@ -2,7 +2,7 @@ var walls = []; // array of wall locations as per level
 
 // add new wall to array
 function newWall(x, y) {
-	walls.push(new component(spacing, spacing, "wall", x * position, y * position));
+	walls.push(new rectangle(spacing, spacing, "wall", x * position, y * position));
 }
 // add row of walls (X location, Y Start, Length)
 function newWallColumn(x, yStart, length) {

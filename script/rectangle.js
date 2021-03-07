@@ -1,5 +1,5 @@
 // multiple components can be created and used for different purposes
-function component(width, height, type, x, y, speedX, speedY) {
+function rectangle(width, height, type, x, y, speedX, speedY) {
     this.gamearea = gameArea;
     this.width = width;
     this.height = height;

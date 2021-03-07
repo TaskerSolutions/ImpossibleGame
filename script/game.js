@@ -9,7 +9,7 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 function createGame() {
 	gameArea.create();
 	timer.start();
-	startNextLevel(1);
+	startNextLevel(5);
 }
 
 // main function stored in here (gameArea.interval)
@@ -50,7 +50,7 @@ var gameArea = {
 // runs every game tick (frameRate)
 function redraw() {
 	// read timer
-	time = Math.round(timer.getTime() / 10) / 100
+	time = Math.round(timer.getTime() / 10) / 100;
 	// print time to html
 	$('#time').html(time);
 	// clear canvas to blank
@@ -59,9 +59,12 @@ function redraw() {
 	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
 	// draw goal
 	goal.update();
-	// run character movement and collision detection code
+	// run character movement code
 	updateCharacter();
-	//draw enemies
+	// check for collision with enemy types & goal
+	// checkCollisions();
+	// draw enemies
 	updateBomb();
 	updateBounce();
+	//updateCentre();
 }

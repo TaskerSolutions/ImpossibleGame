@@ -8,7 +8,7 @@ function hitEnemy(position) {
 	while (i < 20) {
 		(function (i) {
 		  	setTimeout(function () {
-				character = new component(spacing - i, spacing - i, "darkred", x + i/2, y + i/2);
+				character = new rectangle(spacing - i, spacing - i, "darkred", x + i/2, y + i/2);
 		    }, 20*i);
 		})(i);
 		i += 1;;
