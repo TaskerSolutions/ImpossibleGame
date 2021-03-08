@@ -1,5 +1,5 @@
 var scale = 2; // zoom of game
-var frameRate = 20; //frame rate of game in ms
+var frameRate = 50; //frame rate of game in ms
 var squareSize = 10; // size of character, walls etc.
 var speed = 2; // speed at which character moves
 let spacing = squareSize * scale; // spacing for each component. default is 20px
@@ -61,10 +61,11 @@ function redraw() {
 	goal.update();
 	// run character movement code
 	updateCharacter();
-	// check for collision with enemy types & goal
-	// checkCollisions();
+	// check for character collision with enemy types & goal
+	checkCollisions();
 	// draw enemies
-	updateBomb();
-	updateBounce();
-	//updateCentre();
+	if (bombEnemy[0] != null) {updateBomb();};
+	if (bounceEnemy[0] != null) {updateBounce();};
+	//updateRotating();
+	if (circleEnemy[0] != null) {updateCircle();};
 }

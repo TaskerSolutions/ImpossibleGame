@@ -1,9 +1,12 @@
 // run to check for character collisions
 function checkCollisions() {
-	// check for collision with types & execute function depening on what is hit
+	// check for collision with enemy types & execute function depening on what is hit
 	if (collisionWithRect(bombEnemy) && !characterDead) {explodeBomb(i);};
 	if (collisionWithRect(bounceEnemy) && !characterDead) {hitEnemy(i);};
-	if (collisionWithCircle(centreEnemy) && !characterDead) {console.log(i);}
+	//if (collisionWithRect(rotatingEnemy) && !characterDead) {hitEnemy(i);};
+	if (collisionWithCircle(circleEnemy) && !characterDead) {console.log(i);}
+
+	//check collision with goal and complete level
 	if (character.crashWith(goal)) {completeLevel();}
 }
 
@@ -19,25 +22,8 @@ function collisionWithRect(type) {
 // check collision with array of circle type
 function collisionWithCircle(type) {
 	for (i = 0; i < type.length; i += 1) {
-		if (rectCircleCrash(type[i], character)) {
+		if (character.crashCircle(type[i])) {
 			return type[i];
 		}
 	}
-}
-
-
-// return true if the rectangle and circle are colliding
-function rectCircleCrash(circle, rect){
-	var distX = Math.abs((circle.x + circle.radius) - rect.x-rect.width/2);
-	var distY = Math.abs((circle.y + circle.radius) - rect.y-rect.height/2);
-
-	if (distX > (rect.width/2 + circle.radius)) { return false; };
-	if (distY > (rect.height/2 + circle.radius)) { return false; };
-
-	if (distX <= (rect.w/2)) { return true; };
-	if (distY <= (rect.h/2)) { return true; };
-
-	var dx=distX-rect.width/2;
-	var dy=distY-rect.height/2;
-	return (dx*dx+dy*dy<=(circle.radius*circle.radius));
 }

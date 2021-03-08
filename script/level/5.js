@@ -11,14 +11,15 @@ function level5() {
 	//for (b = 1; b < 29; b++) {newBombEnemy(b, 1);};
 	//for (b = 1; b < 5; b++) {newBombEnemy(1, b);};
 	//for (b = 1; b < 25; b++) {newBombEnemy(b, 5);};
-	for (b = 6; b < 15; b++) {newBombEnemy(24, b);};
-	for (b = 2; b < 19; b++) {newBombEnemy(28, b);};
-	for (b = 4; b < 24; b++) {newBombEnemy(b, 14);};
-	for (b = 4; b < 28; b++) {newBombEnemy(b, 18);};
+	//for (b = 6; b < 15; b++) {newBombEnemy(24, b);};
+	//for (b = 2; b < 19; b++) {newBombEnemy(28, b);};
+	//for (b = 4; b < 24; b++) {newBombEnemy(b, 14);};
+	//for (b = 4; b < 28; b++) {newBombEnemy(b, 18);};
 	
 	newBounceEnemy(26, 13, 1, 0);
 	//for (b = 1; b < 14; b++) {newBounceEnemy(3, 10, 1, 0);};
 
 
-	newCentreEnemy(4, 4, 10, "blue");
+	//(x position, y position, radius, type, width, height)
+	newCircleEnemy(9, 3, 10, "black_dot", 11);
 }
