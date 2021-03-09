@@ -6,11 +6,12 @@ var numResourcesLoaded = 0;
 function loadImage(name) {
 	images[name] = new Image();
 	images[name].onload = function() {resourceLoaded()}
-	images[name].src = "media/" + name + ".png";
+	images[name].src = "img/" + name + ".png";
 }
 
 totalResources ++; loadImage("header");
 totalResources ++; loadImage("point");
+totalResources ++; loadImage("mine");
 totalResources ++; loadImage("black_dot");
 
 totalResources ++; loadImage("wall");

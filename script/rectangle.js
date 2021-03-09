@@ -43,7 +43,7 @@ function rectangle(width, height, type, x, y, speedX, speedY) {
 		gameArea.context.translate(this.x + this.width / 2, this.y + this.height / 2);
 		gameArea.context.rotate(Math.PI / (180.0 / rotationAmount));
 		gameArea.context.fillStyle = type;
-		gameArea.context.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+		gameArea.context.fillRect(this.width / (20 - this.width), this.height / (20 / this.height), this.width, this.height);
 		gameArea.context.restore();
 	}
 

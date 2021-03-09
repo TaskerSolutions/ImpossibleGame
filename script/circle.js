@@ -1,39 +1,36 @@
+var rotationAmount = 0;
+
 // multiple components can be created and used for different purposes
-function circle(x, y, radius, type, fromCentre, speedX, speedY) {
+function circle(x, y, radius, type, fromCenter, speed) {
     this.gamearea = gameArea;   
-    this.x = x;
-    this.y = y;
 	this.centerX = x;
     this.centerY = y;
 	this.radius = radius;
-    this.speedX = speedX;
-    this.speedY = speedY; 
-	this.fromCentre = fromCentre;
-	this.angle =  rotationAmount * (Math.PI / 180);
-	//this.velocity = Math.PI/2;
+	this.fromCenter = fromCenter;
+	this.x = this.centerX + this.fromCenter;
+    this.y = this.centerY + this.fromCenter;
+	// angle in radians should only be calculated once
+	this.angle = speed * (Math.PI / 180);
+	//console.log(this.angle);
 
 	// drawing a circle uses way too much memory to be printed every frame. must use pictures
     this.update = function() {
 		if (type == "point") {
 			gameArea.context.drawImage(images["point"], this.x, this.y, radius * 2, radius * 2);
 		} else {
-			//this.angle -= this.velocity;
-			this.angle = rotationAmount * (Math.PI / 180);
-			//console.log(this.angle);
-
-			//var x2 = this.centerX + (this.x - this.centerX) * Math.cos(this.angle) - (this.y-this.centerY) * Math.sin(this.angle);
-			//var y2 = this.centerY + (this.x - this.centerX) * Math.sin(this.angle) + (this.y-this.centerY) * Math.cos(this.angle);
-			
-			var x2 = this.x + this.radius * 2 * Math.sin(this.angle);
-			var y2 = this.y + this.radius * 2 * Math.cos(this.angle);
-
-			//console.log("center x = " + this.centerX);
-			//console.log("center y = " + this.centerY);
-			//console.log(x2);
-
-			this.x = x2;
-			this.y = y2;
-			gameArea.context.drawImage(images["black_dot"], this.x, this.y, radius * 2, radius * 2);
+			if (type == "point") {
+				console.log("collect point");
+			} else if (type == "mine") {
+				// update x and y coords
+				var x2 = this.centerX + (this.x - this.centerX) * Math.cos(this.angle) - (this.y-this.centerY) * Math.sin(this.angle);
+				var y2 = this.centerY + (this.x - this.centerX) * Math.sin(this.angle) + (this.y-this.centerY) * Math.cos(this.angle);
+				this.x = x2;
+				this.y = y2;
+				// draw shape
+				this.rotatePos();
+				// draw center point
+				//gameArea.context.drawImage(images["black_dot"], this.centerX - 2, this.centerY - 2, 4, 4);
+			}
 		}
     }
 
@@ -43,17 +40,20 @@ function circle(x, y, radius, type, fromCentre, speedX, speedY) {
         this.y += this.speedY;        
     }
 
-	//for rotating cirlcle around a centrepoint
 	this.rotatePos = function() {
-		// save canvas
+		// itterate rotation amount from 0-360 for image rotation
+		if (rotationAmount < 360) {rotationAmount += 0.5;}
+		else {rotationAmount = 0;}
+		//console.log(rotationAmount);
+		// rotate image
 		gameArea.context.save();
-		// translate? idk
 		gameArea.context.translate(this.x + this.radius, this.y + this.radius);
-		// 180 is the speed of rotation. higher number makes it slower
-		gameArea.context.rotate(Math.PI / (180 / rotationAmount));
-		// - radius for both values places the image where circles position is
-		gameArea.context.drawImage(images["black_dot"], - radius, - radius);
-		// restore canvas
+		gameArea.context.rotate(- rotationAmount * Math.PI / 180.0);
+		gameArea.context.drawImage(images["mine"], - radius, - radius, radius * 2, radius * 2);
 		gameArea.context.restore();
 	}
 }
+
+
+// My JsFiddle with working rotation code
+// https://jsfiddle.net/Harry999/xy9uq7ed/57/

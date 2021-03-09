@@ -63,3 +63,4 @@ function updateCharacter() {
 	if (!characterDead) {character.newPos();};
     character.update();
 }
+

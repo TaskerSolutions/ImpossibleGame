@@ -1,18 +1,12 @@
 var rotatingEnemy = []; 
-var rotationAmount = 0;
 
 // remake character
 function newRotatingEnemy(width, height, color, x, y) {
 	rotatingEnemy.push(new rectangle(width, height, color, x * position, y * position));
 }
 
-// run every game tick. Used to rotate all rotating enemies
+// run every game tick.
 function updateRotating() {
-	if (rotationAmount < 350) {
-		rotationAmount += 2;
-	} else {
-		rotationAmount = 0;
-	}
 	//console.log(rotationAmount);
     for (i = 0; i < rotatingEnemy.length; i ++) {
 		rotatingEnemy[i].rotatePos(rotationAmount);
@@ -22,7 +16,7 @@ function updateRotating() {
 
 
 
-/*
+/* collision detection with rotating rectangle
 var canvas = document.getElementById('canvas')
 var context = canvas.getContext('2d')
 var increaseBtn = document.getElementById('increase')

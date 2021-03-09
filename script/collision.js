@@ -4,7 +4,7 @@ function checkCollisions() {
 	if (collisionWithRect(bombEnemy) && !characterDead) {explodeBomb(i);};
 	if (collisionWithRect(bounceEnemy) && !characterDead) {hitEnemy(i);};
 	//if (collisionWithRect(rotatingEnemy) && !characterDead) {hitEnemy(i);};
-	if (collisionWithCircle(circleEnemy) && !characterDead) {console.log(i);}
+	if (collisionWithCircle(mineEnemy) && !characterDead) {explodeMine(i);}
 
 	//check collision with goal and complete level
 	if (character.crashWith(goal)) {completeLevel();}

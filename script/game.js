@@ -1,5 +1,5 @@
 var scale = 2; // zoom of game
-var frameRate = 50; //frame rate of game in ms
+var frameRate = 20; //frame rate of game in ms
 var squareSize = 10; // size of character, walls etc.
 var speed = 2; // speed at which character moves
 let spacing = squareSize * scale; // spacing for each component. default is 20px
@@ -9,7 +9,7 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 function createGame() {
 	gameArea.create();
 	timer.start();
-	startNextLevel(5);
+	startNextLevel(1);
 }
 
 // main function stored in here (gameArea.interval)
@@ -49,6 +49,11 @@ var gameArea = {
 
 // runs every game tick (frameRate)
 function redraw() {
+	// check if background music has been played before, and play if not
+	if (!firstPlay && gameArea.keys) {
+		//backgroundMusic.play();
+		firstPlay = true;
+	}
 	// read timer
 	time = Math.round(timer.getTime() / 10) / 100;
 	// print time to html
@@ -66,6 +71,5 @@ function redraw() {
 	// draw enemies
 	if (bombEnemy[0] != null) {updateBomb();};
 	if (bounceEnemy[0] != null) {updateBounce();};
-	//updateRotating();
-	if (circleEnemy[0] != null) {updateCircle();};
+	if (mineEnemy[0] != null) {updateMine();};	
 }

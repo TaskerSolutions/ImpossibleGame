@@ -9,7 +9,7 @@
 	<meta name="keywords" content="html css javascript jquery website design development worlds hardest impossible game"> <!-- for SEO. avoid stuffing (web site website websites) -->
 	<meta name="author" content="Harry Tasker">
 	<!-- Following is facebook sharing criteria. Description helps click through rate and conversions -->
-	<meta property="og:image" content="media/header.png" /> <!-- image displayed in FB links -->
+	<meta property="og:image" content="img/header.png" /> <!-- image displayed in FB links -->
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://taskersolutions.com/impossiblegame/index.html" />
 	<meta property="og:description" content="A classic 2d puzzle game, that provides endless challenges and frustration." />
@@ -18,7 +18,7 @@
 
 	<link rel="dns-prefetch" href="//fonts.googleapis.com"> <!-- load google fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Gloria Hallelujah' rel='stylesheet'>
-	<link rel="shortcut icon" type="image/jpg" href="media/logo.jpg"> <!-- favicon -->
+	<link rel="shortcut icon" type="image/jpg" href="img/logo.jpg"> <!-- favicon -->
 
 	<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel='stylesheet' />
 	<link rel="stylesheet" href="css/style.css">
@@ -29,11 +29,16 @@
 
 <body onload="createGame()">
 	<main class="ready reveal-in">
+		
 		<div id="dialog"><p id="dialog-message"></p></div>
 		<div class="container">
 			<div class="score-div"><span>Level: </span><span class="number" id="level">0</span></div>
 			<div class="score-div"><span>Time: </span><span class="number" id="time">0</span></div>
 			<div class="score-div"><span>Best Time: </span><span class="number" id="best-time">0</span></div>
+		</div>
+		<div class="container">
+			<button id="music-btn">Music Off</button>
+			<button id="sound-effects-btn">Sound Effects On</button>
 		</div>
 		<div class="container">
 			<button id="restart-btn">Restart Level</button>
@@ -42,8 +47,9 @@
 	</main>
 	
 	<footer>
-		Created by Harry Tasker | Visit
-		<a href="http://www.taskersolutions.com/portfolio.html" target="blank">TaskerSolutions</a> to see my other projects.
+		Created by Harry Tasker
+		<br>Visit <a href="http://www.taskersolutions.com/portfolio.html" target="blank">TaskerSolutions</a> to see my other projects.
+		<br>Sound from Zapsplat.com
 	</footer>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -51,20 +57,19 @@
 	<script src="script/images.js"></script>
 	<script src="script/timer.js"></script>
 	<script src="script/level.js"></script>
+	<script src="script/sound.js"></script>
 	<script src="script/script.js"></script>
 	<script src="script/rectangle.js"></script>
 	<script src="script/circle.js"></script>
 	<script src="script/character.js"></script>	
-	<script src="script/goal.js"></script>	
 	<script src="script/walls.js"></script>
 	<script src="script/collision.js"></script>	
 	<script src="script/game.js"></script>
 
-	<script src="script/enemies/all.js"></script>
 	<script src="script/enemies/bomb.js"></script>	
 	<script src="script/enemies/bounce.js"></script>
 	<script src="script/enemies/rotating.js"></script>
-	<script src="script/enemies/circleenemy.js"></script>
+	<script src="script/enemies/mine.js"></script>
 
 	<script src="script/level/1.js"></script>
 	<script src="script/level/2.js"></script>

@@ -1,10 +1,16 @@
 var currentLevel = 1; // current game level
+var goal;
+
+// make goal
+function newGoal(x, y, width, height) {
+	goal = new rectangle(width * position, height * position, "green", x * position, y * position);
+}
 
 // Create level components, then start interval timer
 function startNextLevel(level) {
 	// reset game area
 	gameArea.stop();
-
+	
 	// increase level by one. Or set level manually.
 	if (level == null) {currentLevel += 1;}
 	else {currentLevel = level;};
@@ -54,7 +60,7 @@ function createLevel(level) {
 	walls = [];
 	bombEnemy = [];
 	bounceEnemy = [];
-	centreEnemy = [];
+	mineEnemy = [];
 	// create new components
 	if (level == 1) {level1();}
 	else if (level == 2) {level2();}

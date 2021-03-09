@@ -24,3 +24,29 @@ function updateBounce() {
 		bounceEnemy[i].update();
 	}
 }
+
+// run when character hits an enemy. Position is the position in enemy array
+function hitEnemy(position) {
+	// play squish
+	if (soundEffectsOn) {squishSound.play();}
+	
+	var x = character.x;
+	var y = character.y;
+	characterDead = true;
+	// death animation
+	var i = 1;
+	while (i < 20) {
+		(function (i) {
+		  	setTimeout(function () {
+				character = new rectangle(spacing - i, spacing - i, "darkred", x + i/2, y + i/2);
+		    }, 20*i);
+		})(i);
+		i += 1;;
+	};
+	setTimeout(function() {
+		// stop sound effects
+		squishSound.stop();
+		startNextLevel(currentLevel);
+		characterDead = false;
+	}, 420)
+}
