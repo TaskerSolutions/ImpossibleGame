@@ -1,12 +1,13 @@
 // multiple components can be created and used for different purposes
-function component(width, height, type, x, y, speedX, speedY) {
+function rectangle(width, height, type, x, y, speedX, speedY) {
     this.gamearea = gameArea;
     this.width = width;
     this.height = height;
     this.speedX = speedX;
     this.speedY = speedY;    
     this.x = x;
-    this.y = y;    
+    this.y = y;   
+	
     this.update = function() {
 		if (type == "wall") {
 			gameArea.context.drawImage(images["wall"], this.x, this.y, spacing, spacing)
@@ -24,16 +25,44 @@ function component(width, height, type, x, y, speedX, speedY) {
 			gameArea.context.drawImage(images["explosion5"], this.x - bombSize * 2.75, this.y - bombSize * 2.4, bombSize * 6, bombSize * 6)
 		} else if (type == "explosion6") {
 			gameArea.context.drawImage(images["explosion6"], this.x - bombSize * 2.75, this.y - bombSize * 2.4, bombSize * 6, bombSize * 6)
+		} else if (type == "black_dot") {
+			gameArea.context.drawImage(images["black_dot"], this.x, this.y, 10, 10);
 		} else {
-			ctx = gameArea.context;
-        	ctx.fillStyle = type;
-       		ctx.fillRect(this.x, this.y, this.width, this.height);
+        	gameArea.context.fillStyle = type;
+			gameArea.context.fillRect(this.x, this.y, this.width, this.height);
 		}
     }
+
     this.newPos = function() {
         this.x += this.speedX;
         this.y += this.speedY;        
     }   
+
+	this.rotatePos = function() {
+		gameArea.context.save();
+		gameArea.context.translate(this.x + this.width / 2, this.y + this.height / 2);
+		gameArea.context.rotate(Math.PI / (180.0 / rotationAmount));
+		gameArea.context.fillStyle = type;
+		gameArea.context.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+		gameArea.context.restore();
+	}
+
+	// return true if the rectangle and circle are colliding
+	this.crashCircle = function(circle) {
+		var distX = Math.abs((circle.x + circle.radius) - this.x - this.width/2);
+		var distY = Math.abs((circle.y + circle.radius) - this.y - this.height/2);
+
+		if (distX > (this.width/2 + circle.radius)) { return false; };
+		if (distY > (this.height/2 + circle.radius)) { return false; };
+
+		if (distX <= (this.width/2)) { return true; };
+		if (distY <= (this.height/2)) { return true; };
+
+		var dx=distX-this.width/2;
+		var dy=distY-this.height/2;
+		return (dx*dx+dy*dy<=(circle.radius*circle.radius));
+	}
+
 	// collision detection
 	this.crashWith = function(otherobj) {
         var myleft = this.x;

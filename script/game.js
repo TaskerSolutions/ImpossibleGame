@@ -1,5 +1,5 @@
 var scale = 2; // zoom of game
-var frameRate = 20; //frame rate of game in ms
+var frameRate = 50; //frame rate of game in ms
 var squareSize = 10; // size of character, walls etc.
 var speed = 2; // speed at which character moves
 let spacing = squareSize * scale; // spacing for each component. default is 20px
@@ -9,7 +9,7 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 function createGame() {
 	gameArea.create();
 	timer.start();
-	startNextLevel(1);
+	startNextLevel(5);
 }
 
 // main function stored in here (gameArea.interval)
@@ -50,7 +50,7 @@ var gameArea = {
 // runs every game tick (frameRate)
 function redraw() {
 	// read timer
-	time = Math.round(timer.getTime() / 10) / 100
+	time = Math.round(timer.getTime() / 10) / 100;
 	// print time to html
 	$('#time').html(time);
 	// clear canvas to blank
@@ -59,9 +59,13 @@ function redraw() {
 	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
 	// draw goal
 	goal.update();
-	// run character movement and collision detection code
+	// run character movement code
 	updateCharacter();
-	//draw enemies
-	updateBomb();
-	updateBounce();
+	// check for character collision with enemy types & goal
+	checkCollisions();
+	// draw enemies
+	if (bombEnemy[0] != null) {updateBomb();};
+	if (bounceEnemy[0] != null) {updateBounce();};
+	//updateRotating();
+	if (circleEnemy[0] != null) {updateCircle();};
 }

@@ -1,18 +1,12 @@
 var character; // initialize character
 var characterDead = false;
-var goal;
 
 // remake character
 function newCharacter(x, y, color) {
-	character = new component(spacing, spacing, color, x * position, y * position);
+	character = new rectangle(spacing, spacing, color, x * position, y * position);
 }
 
-// remake goal
-function newGoal(x, y, width, height) {
-	goal = new component(width * position, height * position, "green", x * position, y * position);
-}
-
-// run every game tick. Used to move character & check for collisions
+// run every game tick. Used to move character
 function updateCharacter() {
 	character.speedX = 0;
     character.speedY = 0; 
@@ -65,21 +59,7 @@ function updateCharacter() {
 		}	
 	}
 
-	// check for collision with types & execute function depening on what is hit
-	if (checkCollision(bombEnemy) && !characterDead) {explodeBomb(i);};
-	if (checkCollision(bounceEnemy) && !characterDead) {hitEnemy(i);};
-	if (character.crashWith(goal)) {completeLevel();}
-
 	// update char position and print to canvas
 	if (!characterDead) {character.newPos();};
     character.update();
-}
-
-// check collision with enemy type
-function checkCollision(type) {
-	for (i = 0; i < type.length; i += 1) {
-		if (character.crashWith(type[i])) {
-			return type[i];
-		}
-	}	
 }

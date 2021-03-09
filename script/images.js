@@ -1,4 +1,4 @@
-var images = {};
+var images = [];
 var totalResources = 0;
 var numResourcesLoaded = 0;
 

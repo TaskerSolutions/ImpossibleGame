@@ -3,7 +3,7 @@ var bombSize = 18;
 
 // stationary enemy  (x location, Y location)
 function newBombEnemy(x, y) {
-	bombEnemy.push(new component(bombSize, bombSize, "bomb", x * position + 1, y * position + 1));
+	bombEnemy.push(new rectangle(bombSize, bombSize, "bomb", x * position + 1, y * position + 1));
 }
 
 // update bomb enemies
@@ -26,13 +26,13 @@ function explodeBomb(position) {
 		(function (i) {
 		  	setTimeout(function () {
 				var explosion = "explosion".concat(i.toString());
-				bombEnemy[position] = new component(bombSize, bombSize, explosion, x, y);
+				bombEnemy[position] = new rectangle(bombSize, bombSize, explosion, x, y);
 		    }, 50*i);
 		})(i);
 		i ++;;
 	};
 	setTimeout(function() {
-		bombEnemy[position] = new component(bombSize, bombSize, "bomb", x, y);
+		bombEnemy[position] = new rectangle(bombSize, bombSize, "bomb", x, y);
 		startNextLevel(currentLevel);
 	}, 800)
 }

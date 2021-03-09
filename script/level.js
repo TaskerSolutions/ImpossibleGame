@@ -54,6 +54,7 @@ function createLevel(level) {
 	walls = [];
 	bombEnemy = [];
 	bounceEnemy = [];
+	centreEnemy = [];
 	// create new components
 	if (level == 1) {level1();}
 	else if (level == 2) {level2();}
