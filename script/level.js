@@ -48,6 +48,7 @@ function loadLevel(level) {
 
 // complete level function
 function completeLevel() {
+	winSound.play();
 	// stop interval timer (redraw)
 	gameArea.stop();
 	// update times & open dialog

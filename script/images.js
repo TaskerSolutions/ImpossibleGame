@@ -13,7 +13,7 @@ totalResources ++; loadImage("header");
 totalResources ++; loadImage("point");
 totalResources ++; loadImage("mine");
 totalResources ++; loadImage("black_dot");
-
+totalResources ++; loadImage("bounce");
 totalResources ++; loadImage("wall");
 totalResources ++; loadImage("bomb");
 totalResources ++; loadImage("explosion1");

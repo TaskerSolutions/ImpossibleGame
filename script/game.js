@@ -8,7 +8,6 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
-	timer.start();
 	startNextLevel(1);
 }
 
@@ -51,7 +50,8 @@ var gameArea = {
 function redraw() {
 	// check if background music has been played before, and play if not
 	if (!firstPlay && gameArea.keys) {
-		//backgroundMusic.play();
+		backgroundMusic.play();
+		timer.start();
 		firstPlay = true;
 	}
 	// read timer

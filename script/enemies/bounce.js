@@ -3,7 +3,7 @@ var bounceSize = 18;
 
 // enemy that bounces off walls (x location, Y location, X speed, Y speed)
 function newBounceEnemy(x, y, speedX, speedY) {
-	bounceEnemy.push(new rectangle(bounceSize, bounceSize, "blue", x * position + 1, y * position + 1, speedX * speed, speedY * speed));
+	bounceEnemy.push(new rectangle(bounceSize, bounceSize, "bounce", x * position + 1, y * position + 1, speedX * speed, speedY * speed));
 }
 
 function updateBounce() {

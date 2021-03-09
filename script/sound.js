@@ -1,9 +1,11 @@
-var backgroundMusic = new sound("sound/music_arcade_electro.mp3", true);
 var firstPlay = false;
+var soundEffectsOn = true;
+var backgroundMusic = new sound("sound/music_arcade_electro.mp3", true);
+var winSound = new sound("sound/win.mp3");
 var explosionSound = new sound("sound/explosion.mp3");
 var squishSound = new sound("sound/squish.mp3");
 var flameThrowerSound = new sound("sound/flame_thrower.mp3");
-var soundEffectsOn = true;
+
 
 // background music button
 $('#music-btn').on('click', function(){ 

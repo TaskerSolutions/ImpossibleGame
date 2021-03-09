@@ -13,6 +13,8 @@ function rectangle(width, height, type, x, y, speedX, speedY) {
 			gameArea.context.drawImage(images["wall"], this.x, this.y, spacing, spacing)
 		} else if (type == "bomb") {
 			gameArea.context.drawImage(images["bomb"], this.x, this.y, bombSize, bombSize)
+		} else if (type == "bounce") {
+			gameArea.context.drawImage(images["bounce"], this.x, this.y, bounceSize, bounceSize)
 		} else if (type == "explosion1") {
 			gameArea.context.drawImage(images["explosion1"], this.x - bombSize * 2.75, this.y - bombSize * 2.4, bombSize * 6, bombSize * 6)
 		} else if (type == "explosion2") {
