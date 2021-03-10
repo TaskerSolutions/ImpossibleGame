@@ -8,6 +8,7 @@ function newGoal(x, y, width, height) {
 
 // Create level components, then start interval timer
 function startNextLevel(level) {
+	flamesSound.stop();
 	// reset game area
 	gameArea.stop();
 	
@@ -57,11 +58,18 @@ function completeLevel() {
 
 // each levels components are created here (only called once per level)
 function createLevel(level) {
-	// clear current arrays of walls and enemies
+	// clear current arrays
 	walls = [];
+	barrier = [];
+	key = [];
 	bombEnemy = [];
 	bounceEnemy = [];
 	mineEnemy = [];
+	flamesUpEnemy = [];
+	flamesDownEnemy = [];
+	flamethrowerDown = [];
+	flamethrowerUp = [];
+	flamesPos = 21;
 	// create new components
 	if (level == 1) {level1();}
 	else if (level == 2) {level2();}

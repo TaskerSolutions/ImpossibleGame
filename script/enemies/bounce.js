@@ -26,7 +26,7 @@ function updateBounce() {
 }
 
 // run when character hits an enemy. Position is the position in enemy array
-function hitEnemy(position) {
+function hitBounce(position) {
 	// play squish
 	if (soundEffectsOn) {squishSound.play();}
 	

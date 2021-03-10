@@ -1,10 +1,12 @@
 var firstPlay = false;
 var soundEffectsOn = true;
-var backgroundMusic = new sound("sound/music_arcade_electro.mp3", true);
+var backgroundMusic = new sound("sound/music_arcade_electro.mp3", 0.7, true);
 var winSound = new sound("sound/win.mp3");
 var explosionSound = new sound("sound/explosion.mp3");
 var squishSound = new sound("sound/squish.mp3");
-var flameThrowerSound = new sound("sound/flame_thrower.mp3");
+var unlockSound = new sound("sound/unlock.mp3");
+var flamesSound = new sound("sound/flame_thrower.mp3", 0.4);
+var burningSound = new sound("sound/burning.mp3");
 
 
 // background music button
@@ -29,11 +31,12 @@ $('#sound-effects-btn').on('click', function(){
 	}
 });
 
-function sound(src, loop) {
+function sound(src, volume, loop) {
 	this.sound = document.createElement("audio");
 	this.sound.src = src;
 	this.sound.setAttribute("preload", "auto");
 	this.sound.setAttribute("controls", "none");
+	this.sound.volume = volume || 1;
 	if (loop) {this.sound.setAttribute("loop", "true")}
 	this.sound.style.display = "none";
 	document.body.appendChild(this.sound);

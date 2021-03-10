@@ -1,12 +1,26 @@
 // run to check for character collisions
 function checkCollisions() {
 	// check for collision with enemy types & execute function depening on what is hit
-	if (collisionWithRect(bombEnemy) && !characterDead) {explodeBomb(i);};
-	if (collisionWithRect(bounceEnemy) && !characterDead) {hitEnemy(i);};
-	//if (collisionWithRect(rotatingEnemy) && !characterDead) {hitEnemy(i);};
-	if (collisionWithCircle(mineEnemy) && !characterDead) {explodeMine(i);}
+	if (collisionWithRect(bombEnemy) && !characterDead) {
+		explodeBomb(i);
+	};
+	if (collisionWithRect(bounceEnemy) && !characterDead) {
+		hitBounce(i);
+	};
+	if (collisionWithCircle(mineEnemy) && !characterDead) {
+		explodeMine(i);
+	}
+	if (collisionWithRect(flamesUpEnemy) && !characterDead && flamesPos < 19) {
+		hitFlames(i);
+	}
+	if (collisionWithRect(flamesDownEnemy) && !characterDead && flamesPos < 19) {
+		hitFlames(i);
+	}
 
-	//check collision with goal and complete level
+	// check collision with keys
+	if (collisionWithRect(key) && !characterDead) {collectKey(i);}
+
+	// check collision with goal and complete level
 	if (character.crashWith(goal)) {completeLevel();}
 }
 

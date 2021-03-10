@@ -8,7 +8,7 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
-	startNextLevel(1);
+	startNextLevel(10);
 }
 
 // main function stored in here (gameArea.interval)
@@ -19,20 +19,20 @@ var gameArea = {
         this.canvas.height = 200 * scale;
         this.context = this.canvas.getContext("2d"); 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]); // where canvas appears in body
-		//listen for keydown events, pass key code through (e)
-        window.addEventListener('keydown', function (e) {
+		//listen for keydown events
+        document.addEventListener('keydown', function (event) {
             gameArea.keys = (gameArea.keys || []);
-            gameArea.keys[e.keyCode] = (e.type == "keydown");
-			if((e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40)
-				&& e.target.nodeName=='BODY') {
-				event.preventDefault(); //prevent default if it is body
+            gameArea.keys[event.keyCode] = (event.type == "keydown");
+			if((event.keyCode === 37 || event.keyCode === 38 || event.keyCode === 39 || event.keyCode === 40)
+				&& event.target.nodeName=='BODY') {
+					event.preventDefault(); //prevent default if it is body
 			}
         })
-		//listen for keyup events, pass key code through (e)
-        window.addEventListener('keyup', function (e) {
-            gameArea.keys[e.keyCode] = (e.type == "keydown");  
-			if((e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40)
-				&& e.target.nodeName=='BODY') {
+		//listen for keyup events
+        document.addEventListener('keyup', function (event) {
+            gameArea.keys[event.keyCode] = (event.type == "keydown");  
+			if((event.keyCode === 37 || event.keyCode === 38 || event.keyCode === 39 || event.keyCode === 40)
+				&& event.target.nodeName=='BODY') {
 				event.preventDefault(); //prevent default if it is body
 			}          
         })
@@ -50,7 +50,7 @@ var gameArea = {
 function redraw() {
 	// check if background music has been played before, and play if not
 	if (!firstPlay && gameArea.keys) {
-		backgroundMusic.play();
+		//backgroundMusic.play();
 		timer.start();
 		firstPlay = true;
 	}
@@ -64,12 +64,23 @@ function redraw() {
 	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
 	// draw goal
 	goal.update();
+
+	// draw flame throwers below character
+	if (flamesUpEnemy[0] != null) {updateFlamesUp();};
+	if (flamesDownEnemy[0] != null) {updateFlamesDown();};
+
 	// run character movement code
 	updateCharacter();
 	// check for character collision with enemy types & goal
 	checkCollisions();
-	// draw enemies
+	
+	//draw barriers and keys
+	if (barrier[0] != null) {updateBarrier();};
+	if (key[0] != null) {updateKey();};
+
+	// draw enemies above character
 	if (bombEnemy[0] != null) {updateBomb();};
 	if (bounceEnemy[0] != null) {updateBounce();};
 	if (mineEnemy[0] != null) {updateMine();};	
+	
 }

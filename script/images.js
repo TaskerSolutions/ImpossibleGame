@@ -10,12 +10,32 @@ function loadImage(name) {
 }
 
 totalResources ++; loadImage("header");
+totalResources ++; loadImage("barrier");
+totalResources ++; loadImage("key");
 totalResources ++; loadImage("point");
 totalResources ++; loadImage("mine");
 totalResources ++; loadImage("black_dot");
 totalResources ++; loadImage("bounce");
 totalResources ++; loadImage("wall");
 totalResources ++; loadImage("bomb");
+totalResources ++; loadImage("flamethrower");
+totalResources ++; loadImage("flames1");
+totalResources ++; loadImage("flames2");
+totalResources ++; loadImage("flames3");
+totalResources ++; loadImage("flames4");
+totalResources ++; loadImage("flames5");
+totalResources ++; loadImage("flames6");
+totalResources ++; loadImage("flames7");
+totalResources ++; loadImage("char");
+totalResources ++; loadImage("flamethrowerdown");
+totalResources ++; loadImage("flames1down");
+totalResources ++; loadImage("flames2down");
+totalResources ++; loadImage("flames3down");
+totalResources ++; loadImage("flames4down");
+totalResources ++; loadImage("flames5down");
+totalResources ++; loadImage("flames6down");
+totalResources ++; loadImage("flames7down");
+totalResources ++; loadImage("chardown");
 totalResources ++; loadImage("explosion1");
 totalResources ++; loadImage("explosion2");
 totalResources ++; loadImage("explosion3");

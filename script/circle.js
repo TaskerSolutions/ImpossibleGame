@@ -1,14 +1,20 @@
 var rotationAmount = 0;
 
 // multiple components can be created and used for different purposes
-function circle(x, y, radius, type, fromCenter, speed) {
+function circle(x, y, radius, type, fromCenter, speed, startPos) {
     this.gamearea = gameArea;   
 	this.centerX = x;
     this.centerY = y;
 	this.radius = radius;
 	this.fromCenter = fromCenter;
 	this.x = this.centerX + this.fromCenter;
-    this.y = this.centerY + this.fromCenter;
+	if (startPos == 1) {
+    	this.y = this.centerY - this.fromCenter;
+	} else {
+    	this.y = this.centerY + this.fromCenter;
+	}
+	
+	
 	// angle in radians should only be calculated once
 	this.angle = speed * (Math.PI / 180);
 	//console.log(this.angle);
@@ -42,7 +48,7 @@ function circle(x, y, radius, type, fromCenter, speed) {
 
 	this.rotatePos = function() {
 		// itterate rotation amount from 0-360 for image rotation
-		if (rotationAmount < 360) {rotationAmount += 0.5;}
+		if (rotationAmount < 360) {rotationAmount += (speed / 10 + 0.2);}
 		else {rotationAmount = 0;}
 		//console.log(rotationAmount);
 		// rotate image

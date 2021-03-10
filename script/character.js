@@ -12,51 +12,27 @@ function updateCharacter() {
     character.speedY = 0; 
 	// move left trigger
     if (gameArea.keys && gameArea.keys[37]) {
-		// check for collision with walls
-		for (i = 0; i < walls.length; i += 1) {
-			if (character.crashLeft(walls[i])) {
-				i = walls.length;
-				character.speedX = 0;
-			} else {
-				character.speedX = -1 * speed;
-			}
-		}		
+		if (!collisionLeft(walls) && !collisionLeft(barrier)) {
+			character.speedX = -1 * speed;
+		}	
 	}
 	// move right trigger
     if (gameArea.keys && gameArea.keys[39]) {
-		// check for collision with walls
-		for (i = 0; i < walls.length; i += 1) {
-			if (character.crashRight(walls[i])) {
-				i = walls.length;
-				character.speedX = 0;
-			} else {
-				character.speedX = 1 * speed;
-			}
-		}	
+		if (!collisionRight(walls) && !collisionRight(barrier)) {
+			character.speedX = 1 * speed;
+		}
 	}
 	// move up trigger
     if (gameArea.keys && gameArea.keys[38]) {
-		// check for collision with walls
-		for (i = 0; i < walls.length; i += 1) {
-			if (character.crashTop(walls[i])) {
-				i = walls.length;
-				character.speedY = 0;
-			} else {
-				character.speedY = -1 * speed;
-			}
-		}	
+		if (!collisionTop(walls) && !collisionTop(barrier)) {
+			character.speedY = -1 * speed;
+		}
 	}
 	// move down trigger
     if (gameArea.keys && gameArea.keys[40]) {
-		// check for collision with walls
-		for (i = 0; i < walls.length; i += 1) {
-			if (character.crashBottom(walls[i])) {
-				i = walls.length;
-				character.speedY = 0;
-			} else {
-				character.speedY = 1 * speed;
-			}
-		}	
+		if (!collisionBottom(walls) && !collisionBottom(barrier)) {
+			character.speedY = 1 * speed;
+		}
 	}
 
 	// update char position and print to canvas
@@ -64,3 +40,38 @@ function updateCharacter() {
     character.update();
 }
 
+// check for collision with walls/barriers
+function collisionBottom(type) {
+	for (i = 0; i < type.length; i += 1) {
+		if (character.crashBottom(type[i])) {
+			return true;
+		}
+	}	
+}
+
+// check for collision with walls/barriers
+function collisionTop(type) {
+	for (i = 0; i < type.length; i += 1) {
+		if (character.crashTop(type[i])) {
+			return true;
+		}
+	}	
+}
+
+// check for collision with walls/barriers
+function collisionLeft(type) {
+	for (i = 0; i < type.length; i += 1) {
+		if (character.crashLeft(type[i])) {
+			return true;
+		}
+	}	
+}
+
+// check for collision with walls/barriers
+function collisionRight(type) {
+	for (i = 0; i < type.length; i += 1) {
+		if (character.crashRight(type[i])) {
+			return true;
+		}
+	}	
+}

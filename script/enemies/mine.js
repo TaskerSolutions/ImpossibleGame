@@ -3,8 +3,8 @@ var mineEnemy = []; // array of centre enemy locations as per level
 // CANNOT BE PRINTED EVERY FRAME OR BROWSER WILL SLOW TO A CRAWL
 
 // centre of rotating enemy (x position, y position, radius, type, speedX, speedY)
-function newMineEnemy(x, y, radius, type, fromCentre, speed) {
-	mineEnemy.push(new circle(x * position, y * position, radius, type, fromCentre, speed));
+function newMineEnemy(x, y, radius, type, fromCentre, speed, startPos) {
+	mineEnemy.push(new circle(x * position, y * position, radius, type, fromCentre, speed, startPos));
 }
 
 // update center enemies once per frame
