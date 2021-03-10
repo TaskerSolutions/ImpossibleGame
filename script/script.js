@@ -28,6 +28,7 @@ $(function() {
 			{text: "13", click: function() {closeDialog(); loadLevel(13);}},
 			{text: "14", click: function() {closeDialog(); loadLevel(14);}},
 			{text: "15", click: function() {closeDialog(); loadLevel(15);}},
+			/*
 			{text: "16", click: function() {closeDialog(); loadLevel(16);}},
 			{text: "17", click: function() {closeDialog(); loadLevel(17);}},
 			{text: "18", click: function() {closeDialog(); loadLevel(18);}},
@@ -42,7 +43,7 @@ $(function() {
 			{text: "27", click: function() {closeDialog(); loadLevel(27);}},
 			{text: "28", click: function() {closeDialog(); loadLevel(28);}},
 			{text: "29", click: function() {closeDialog(); loadLevel(29);}},
-			{text: "30", click: function() {closeDialog(); loadLevel(30);}},
+			{text: "30", click: function() {closeDialog(); loadLevel(30);}},*/
 			// Close button
 			{text: "Cancel",	click: function() {closeDialog();}},
 			// Next Level
@@ -73,7 +74,7 @@ $('#load-btn').on('click', function(){
 	$("#dialog").dialog('option', 'title', 'Load Level');
 	$("#dialog-message").hide();
 	// define specific width and non resizable
-	$('#dialog').dialog('option','width', 440);
+	$('#dialog').dialog('option','width', 400);
 	$('#dialog').dialog('option','resizable', 'false');
 	// show level buttons
 	$('.ui-dialog-buttonpane button:contains("1")').button().show();

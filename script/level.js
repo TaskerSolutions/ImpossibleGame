@@ -20,10 +20,6 @@ function startNextLevel(level) {
 
 	// retrieve best times
 	retrieveBestTimes();
-	// make best times array full so that load level is available for all @@@@@@@@@ TEMPORARY
-	for (i = 0; i < 31; i ++) {
-		bestTimes[i] = 0;
-	}
 	// print current best time to html doc
 	if (bestTimes[currentLevel] == null) {
 		$('#best-time').html("none");
@@ -69,7 +65,7 @@ function createLevel(level) {
 	flamesDownEnemy = [];
 	flamethrowerDown = [];
 	flamethrowerUp = [];
-	flamesPos = 21;
+	flamesPos = 30;
 	// create new components
 	if (level == 1) {level1();}
 	else if (level == 2) {level2();}
@@ -86,7 +82,7 @@ function createLevel(level) {
 	else if (level == 13) {level13();}
 	else if (level == 14) {level14();}
 	else if (level == 15) {level15();}
-	else if (level == 16) {level16();}
+	else if (level == 16) {}
 	else if (level == 17) {level17();}
 	else if (level == 18) {level18();}
 	else if (level == 19) {level19();}

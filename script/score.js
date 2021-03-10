@@ -31,13 +31,19 @@ function updateBestTime(level) {
 	$("#dialog").dialog('option', 'title', 'Congratulations!');
 	$("#dialog-message").show();
 	if (time < bestTimes[level] || bestTimes[level] == null) {
-		$("#dialog-message").html("New best time: " + time + " seconds<br><br>Previous best: " + oldBestTime);
+		$("#dialog-message").html("New best time: " + time +
+		" seconds<br><br>Previous best: " + oldBestTime);
+		$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
+	} else if (currentLevel == 15) {
+		$("#dialog-message").html("You completed the game!<br>The total of your best times is: "	+
+		bestTimes[0]);
 	} else {
 		$("#dialog-message").html("Level Complete.<br><br>Your time: " + time +
 		" seconds<br><br>Best Time: " + bestTimes[currentLevel] + " seconds");
-	};
+		$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
+	}
 	$('.ui-dialog-buttonpane button:contains("Try again")').button().show();
-	$('.ui-dialog-buttonpane button:contains("Next level")').button().show();
+	
 	$("#dialog").dialog("open");  
 }
 
