@@ -22,7 +22,6 @@ function startNextLevel(level) {
 		$('#level').html("Current level: &nbsp;&nbsp;&nbsp;".concat(currentLevel.toString()));
 	}
 	
-
 	// retrieve best times
 	retrieveBestTimes();
 
