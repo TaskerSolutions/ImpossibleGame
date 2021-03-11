@@ -9,12 +9,9 @@ function loadImage(name) {
 	images[name].src = "img/" + name + ".png";
 }
 
-totalResources ++; loadImage("header");
 totalResources ++; loadImage("barrier");
 totalResources ++; loadImage("key");
-totalResources ++; loadImage("point");
 totalResources ++; loadImage("mine");
-totalResources ++; loadImage("black_dot");
 totalResources ++; loadImage("bounce");
 totalResources ++; loadImage("wall");
 totalResources ++; loadImage("bomb");

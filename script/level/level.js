@@ -25,13 +25,16 @@ function startNextLevel(level) {
 	// retrieve best times
 	retrieveBestTimes();
 
+	//console.log(bestTimes[0]);
+	
+	// turn array into string so it can be stored in local storage
+	localStorage.setItem('bestTimesImpossibleGame', JSON.stringify(bestTimes));
+	// print new best time to html doc
+	$('#best-time').html(JSON.stringify(bestTimes[level]));
+
 	// if on level select, change best time html to total time
 	if (currentLevel == 0) {
-		if (bestTimes[0] == null) {
-			$('#best-time').html("Total Time: &nbsp;&nbsp;&nbsp;none");
-		} else {
-			$('#best-time').html("Total Time: &nbsp;&nbsp;&nbsp;".concat(bestTimes[0]));
-		}
+		$('#best-time').html("Total Time: &nbsp;&nbsp;&nbsp;".concat(bestTimes[0]));
 	// else print current best time to html doc
 	} else {
 		if (bestTimes[currentLevel] == null) {

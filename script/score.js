@@ -1,6 +1,6 @@
 var time = 0;
 // retrieve best times from local storage
-var bestTimes = localStorage.getItem('bestTimesImpossibleGame');
+var bestTimes = [];
 
 function updateBestTime(level) {
 	retrieveBestTimes();
@@ -15,7 +15,7 @@ function updateBestTime(level) {
 	}
 	
 	// position 0 is a combination of best times from all levels
-	totalBestTimes = 0
+	var totalBestTimes = 0
 	for (i = 1; i < bestTimes.length; i++) {
 		totalBestTimes += bestTimes[i];
 	};
@@ -55,5 +55,11 @@ function retrieveBestTimes() {
 	// Parse the string back into an array so it is usable in js
 	bestTimes = JSON.parse(bestTimes);
 	// if best times is empty, define it as empty array
-	if (bestTimes == null) {bestTimes = [];}
+	if (bestTimes == null) {
+		bestTimes = [];
+	}
+	if (bestTimes[0] == null) {
+		bestTimes[0] = 0;
+		console.log(bestTimes[0])
+	}
 }

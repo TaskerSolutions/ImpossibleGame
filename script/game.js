@@ -8,7 +8,7 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
-	startNextLevel(0);
+	startNextLevel(15);
 }
 
 // main function stored in here (gameArea.interval)

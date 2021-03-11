@@ -40,7 +40,7 @@ function updateBarrier() {
 // run when character collects a key. Position is the position in key array
 function collectKey(position) {
 	// play sound
-	if (soundEffectsOn) {unlockSound.play();}
+	unlockSound.play();
     
     // remove hit key 
 	key.splice(position, 1);
