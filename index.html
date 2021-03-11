@@ -30,26 +30,40 @@
 </head>
 
 <body onload="createGame()">
-	<main class="ready reveal-in">
-		
+	<main id="main" class="ready reveal-in">
 		<div id="dialog"><p id="dialog-message"></p></div>
+
 		<div class="container">
-			<div class="score-div"><span>Level: </span><span class="number" id="level">0</span></div>
-			<div class="score-div"><span>Time: </span><span class="number" id="time">0</span></div>
-			<div class="score-div"><span>Best Time: </span><span class="number" id="best-time">0</span></div>
-		</div>
-		<div class="container">
-			<button id="music-btn">Music On</button>
-			<button id="sound-effects-btn">Sound Effects On</button>
-		</div>
-		<div class="container">
-			<button id="restart-btn">Restart Level</button>
-			<button id="load-btn">Load Game</button>
+
+			<div class="float-left">
+				<div class="score-div" id="level">0</div>
+				<div class="score-div" id="time">0</div>
+				<div class="score-div" id="best-time">0</div>
+			</div>
+			
+			<div class="float-middle">
+				<button id="load-btn">Level Select</button>
+				<br>
+				<button id="restart-btn">Restart</button>
+			</div>
+			
+			<div class="float-right">
+				<label>Music:</label>
+				<br>
+				<input id="vol-control" type="range" min="0" max="100" step="1" value ="20" 
+				oninput="changeMusicVolume(this.value)" onchange="changeMusicVolume(this.value)"></input>
+				<br><br>
+				<label>Sound effects:</label>
+				<br>
+				<input id="vol-control" type="range" min="0" max="100" step="1" value ="20" 
+				oninput="changeSfxVolume(this.value)" onchange="changeSfxVolume(this.value)"></input>
+			</div>
+
 		</div>
 	</main>
 	
 	<footer>
-		Created by Harry Tasker | Sound from Zapsplat.com
+		Created by Harry Tasker | Sounds from Zapsplat.com
 		<br>Visit <a href="http://www.taskersolutions.com/portfolio.html" target="blank">TaskerSolutions</a> to see my other projects.
 	</footer>
 		
@@ -57,7 +71,7 @@
 	<script src="script/score.js"></script>
 	<script src="script/images.js"></script>
 	<script src="script/timer.js"></script>
-	<script src="script/level.js"></script>
+	
 	<script src="script/sound.js"></script>
 	<script src="script/script.js"></script>
 	<script src="script/rectangle.js"></script>
@@ -73,6 +87,8 @@
 	<script src="script/enemies/barrier.js"></script>
 	<script src="script/enemies/flames.js"></script>
 
+	<script src="script/level/level.js"></script>
+	<script src="script/level/levelselect.js"></script>
 	<script src="script/level/1.js"></script>
 	<script src="script/level/2.js"></script>
 	<script src="script/level/3.js"></script>
@@ -88,22 +104,6 @@
 	<script src="script/level/13.js"></script>
 	<script src="script/level/14.js"></script>
 	<script src="script/level/15.js"></script>
-	<script src="script/level/16.js"></script>
-	<script src="script/level/17.js"></script>
-	<script src="script/level/18.js"></script>
-	<script src="script/level/19.js"></script>
-	<script src="script/level/20.js"></script>
-	<script src="script/level/21.js"></script>
-	<script src="script/level/22.js"></script>
-	<script src="script/level/23.js"></script>
-	<script src="script/level/24.js"></script>
-	<script src="script/level/25.js"></script>
-	<script src="script/level/26.js"></script>
-	<script src="script/level/27.js"></script>
-	<script src="script/level/28.js"></script>
-	<script src="script/level/29.js"></script>
-	<script src="script/level/30.js"></script>
-
 
 	<!-- scripts for dialog box-->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>

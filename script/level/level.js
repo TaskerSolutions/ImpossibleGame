@@ -1,4 +1,4 @@
-var currentLevel = 1; // current game level
+var currentLevel = 0; // current game level
 var goal;
 
 // make goal
@@ -16,22 +16,44 @@ function startNextLevel(level) {
 	if (level == null) {currentLevel += 1;}
 	else {currentLevel = level;};
 	// print current level in html
-	$('#level').html(currentLevel);
+	if (currentLevel == 0) {
+		$('#level').html("Level Select");
+	} else {
+		$('#level').html("Current level: &nbsp;&nbsp;&nbsp;".concat(currentLevel.toString()));
+	}
+	
 
 	// retrieve best times
 	retrieveBestTimes();
-	// print current best time to html doc
-	if (bestTimes[currentLevel] == null) {
-		$('#best-time').html("none");
+
+	// if on level select, change best time html to total time
+	if (currentLevel == 0) {
+		if (bestTimes[0] == null) {
+			$('#best-time').html("Total Time: &nbsp;&nbsp;&nbsp;none");
+		} else {
+			$('#best-time').html("Total Time: &nbsp;&nbsp;&nbsp;".concat(bestTimes[0]));
+		}
+	// else print current best time to html doc
 	} else {
-		$('#best-time').html(bestTimes[currentLevel]);
+		if (bestTimes[currentLevel] == null) {
+			$('#best-time').html("Best Time: &nbsp;&nbsp;&nbsp;none");
+		} else {
+			$('#best-time').html("Best Time: &nbsp;&nbsp;&nbsp;".concat(bestTimes[currentLevel]));
+		}
 	}
+
+	
+
+	
 
 	// initializes components of each level
 	createLevel(currentLevel);
 	// start interval timer
 	gameArea.start();
 	// restart level timer
+	if (!timer.isRunning && level > 0) {
+		timer.start();
+	}
 	timer.reset();
 }
 
@@ -55,6 +77,9 @@ function completeLevel() {
 // each levels components are created here (only called once per level)
 function createLevel(level) {
 	// clear current arrays
+	levelSelector = [];
+	character = null;
+	goal = null;
 	walls = [];
 	barrier = [];
 	key = [];
@@ -67,7 +92,8 @@ function createLevel(level) {
 	flamethrowerUp = [];
 	flamesPos = 30;
 	// create new components
-	if (level == 1) {level1();}
+	if (level == 0) {createLevelSelect();}
+	else if (level == 1) {level1();}
 	else if (level == 2) {level2();}
 	else if (level == 3) {level3();}
 	else if (level == 4) {level4();}
@@ -82,7 +108,7 @@ function createLevel(level) {
 	else if (level == 13) {level13();}
 	else if (level == 14) {level14();}
 	else if (level == 15) {level15();}
-	else if (level == 16) {}
+	/*else if (level == 16) {}
 	else if (level == 17) {level17();}
 	else if (level == 18) {level18();}
 	else if (level == 19) {level19();}
@@ -96,7 +122,7 @@ function createLevel(level) {
 	else if (level == 27) {level27();}
 	else if (level == 28) {level28();}
 	else if (level == 29) {level29();}
-	else if (level == 30) {level30();}
+	else if (level == 30) {level30();}*/
 	else {
 		//backup position
 		newCharacter(2, 10, "red");

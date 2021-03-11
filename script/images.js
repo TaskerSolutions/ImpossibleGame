@@ -42,6 +42,21 @@ totalResources ++; loadImage("explosion3");
 totalResources ++; loadImage("explosion4");
 totalResources ++; loadImage("explosion5");
 totalResources ++; loadImage("explosion6");
+totalResources ++; loadImage("level1");
+totalResources ++; loadImage("level2");
+totalResources ++; loadImage("level3");
+totalResources ++; loadImage("level4");
+totalResources ++; loadImage("level5");
+totalResources ++; loadImage("level6");
+totalResources ++; loadImage("level7");
+totalResources ++; loadImage("level8");
+totalResources ++; loadImage("level9");
+totalResources ++; loadImage("level10");
+totalResources ++; loadImage("level11");
+totalResources ++; loadImage("level12");
+totalResources ++; loadImage("level13");
+totalResources ++; loadImage("level14");
+totalResources ++; loadImage("level15");
 
 
 // initialise canvas when all resources are loaded

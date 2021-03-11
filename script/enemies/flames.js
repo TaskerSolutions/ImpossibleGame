@@ -34,7 +34,7 @@ function updateFlamesUp() {
 		var width = flamesUpEnemy[i].width;
 		var height = flamesUpEnemy[i].height;
 		// play sound
-		if (flamesPos == 1 && !flamesSound.paused && soundEffectsOn) {
+		if (flamesPos == 1 && !flamesSound.paused) {
 			flamesSound.play();
 		}
 		if (flamesPos < 21) {
@@ -56,7 +56,7 @@ function updateFlamesDown() {
 		var width = flamesDownEnemy[i].width;
 		var height = flamesDownEnemy[i].height;
 		// play sound
-		if (flamesPos == 1 && !flamesSound.paused && soundEffectsOn) {
+		if (flamesPos == 1 && !flamesSound.paused) {
 			flamesSound.play();
 		}
 		if (flamesPos < 21) {
@@ -72,8 +72,8 @@ function updateFlamesDown() {
 
 // run when character hits an enemy. Position is the position in enemy array
 function hitFlames(position) {
-	// play squish
-	if (soundEffectsOn) {burningSound.play();}
+	// play burning sound
+	burningSound.play();
 	
 	var x = character.x;
 	var y = character.y;

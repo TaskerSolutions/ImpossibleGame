@@ -30,6 +30,8 @@ function updateBestTime(level) {
 	// jQuery dialog box with new high score message
 	$("#dialog").dialog('option', 'title', 'Congratulations!');
 	$("#dialog-message").show();
+	// turn buttons green
+	$(".ui-dialog-buttonpane button").css("background-color", "darkgreen");
 	if (time < bestTimes[level] || bestTimes[level] == null) {
 		$("#dialog-message").html("New best time: " + time +
 		" seconds<br><br>Previous best: " + oldBestTime);

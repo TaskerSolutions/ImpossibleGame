@@ -8,7 +8,7 @@ let position = 10 * scale; // position on X/Y at which objects are drawn. (4 = 8
 // executed when body loads successfully
 function createGame() {
 	gameArea.create();
-	startNextLevel(1);
+	startNextLevel(0);
 }
 
 // main function stored in here (gameArea.interval)
@@ -48,31 +48,35 @@ var gameArea = {
 
 // runs every game tick (frameRate)
 function redraw() {
-	// check if background music has been played before, and play if not
-	if (!firstPlay && gameArea.keys) {
-		backgroundMusic.play();
-		timer.start();
-		firstPlay = true;
-	}
 	// read timer
 	time = Math.round(timer.getTime() / 10) / 100;
 	// print time to html
-	$('#time').html(time);
+	$('#time').html("Time: &nbsp;&nbsp;&nbsp;".concat(time.toString()));
 	// clear canvas to blank
 	gameArea.clear();
+
+	// draw level select
+	if (currentLevel == 0) {
+		updateLevelSelect();
+		//console.log("drawing level select")
+	};
+
 	// draw array of walls
 	for (i = 0; i < walls.length; i += 1) {walls[i].update();}
+
 	// draw goal
-	goal.update();
+	if (goal != null) {goal.update();}
 
 	// draw flame throwers below character
 	if (flamesUpEnemy[0] != null) {updateFlamesUp();};
 	if (flamesDownEnemy[0] != null) {updateFlamesDown();};
 
 	// run character movement code
-	updateCharacter();
-	// check for character collision with enemy types & goal
-	checkCollisions();
+	if (character != null) {
+		updateCharacter();
+		// check for character collision with enemy types & goal
+		checkCollisions();
+	}	
 	
 	//draw barriers and keys
 	if (barrier[0] != null) {updateBarrier();};

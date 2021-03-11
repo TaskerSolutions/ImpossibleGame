@@ -17,7 +17,7 @@ function updateMine() {
 // run when character hits an enemy. Position is the position in enemy array
 function explodeMine(position) {
 	// play explosion
-	if (soundEffectsOn) {explosionSound.play();}
+	explosionSound.play();
 	//move character off screen to give illusion of death
 	character.x = -100;
 	character.y = -100; 
